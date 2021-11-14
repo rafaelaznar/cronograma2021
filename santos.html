@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - CSS3 Timeline</title>
+  <link rel="stylesheet" href="./style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<style>
+
+ @import url(https://fonts.googleapis.com/css?family=Noto+Sans);
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+  font-size: 100%;
+  font-family: "Noto Sans", sans-serif;
+  color: #eee9dc;
+  background: #48483A;
+}
+
+h2 {
+  margin: 3em 0 0 0;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* -------------------------------------
+ * timeline
+ * ------------------------------------- */
+#timeline {
+  list-style: none;
+  margin: 50px 0 30px 120px;
+  padding-left: 30px;
+  border-left: 8px solid #eee9dc;
+}
+#timeline li {
+  margin: 40px 0;
+  position: relative;
+}
+#timeline p {
+  margin: 0 0 15px;
+}
+
+.date {
+  margin-top: -10px;
+  top: 50%;
+  left: -158px;
+  font-size: 0.95em;
+  line-height: 20px;
+  position: absolute;
+}
+
+.circle {
+  margin-top: -10px;
+  top: 50%;
+  left: -44px;
+  width: 10px;
+  height: 10px;
+  background: #48483A;
+  border: 5px solid #eee9dc;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+}
+
+.content {
+  max-height: 20px;
+  padding: 50px 20px 0;
+  border-color: transparent;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 0.5em;
+  position: relative;
+}
+.content:before, .content:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: solid transparent;
+  position: absolute;
+  pointer-events: none;
+  right: 100%;
+}
+.content:before {
+  border-right-color: inherit;
+  border-width: 20px;
+  top: 50%;
+  margin-top: -20px;
+}
+.content:after {
+  border-right-color: #48483A;
+  border-width: 17px;
+  top: 50%;
+  margin-top: -17px;
+}
+.content p {
+  max-height: 0;
+  color: transparent;
+  text-align: justify;
+  word-break: break-word;
+  hyphens: auto;
+  overflow: hidden;
+}
+
+label {
+  font-size: 1.3em;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+  top: 20px;
+  transition: transform 0.2s linear;
+}
+
+.radio {
+  display: none;
+}
+
+.radio:checked + .relative label {
+  cursor: auto;
+  transform: translateX(42px);
+}
+.radio:checked + .relative .circle {
+  background: #f98262;
+}
+.radio:checked ~ .content {
+  max-height: 180px;
+  border-color: #eee9dc;
+  margin-right: 20px;
+  transform: translateX(20px);
+  transition: max-height 0.4s linear, border-color 0.5s linear, transform 0.2s linear;
+}
+.radio:checked ~ .content p {
+  max-height: 200px;
+  color: #eee9dc;
+  transition: color 0.3s linear 0.3s;
+}
+
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<h2>Linea del Tiempo Jose Francisco Santos</h2>
+<p></p>
+<ul id='timeline'>
+  <li class='work'>
+    <input class='radio' id='work5' name='works' type='radio' checked>
+    <div class="relative">
+      <label for='work5'>Python</label>
+      <span class='date'>1991</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+		Python es un lenguaje de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código.2​ Se trata de un lenguaje de programación multiparadigma, ya que soporta parcialmente la orientación a objetos, programación imperativa y, en menor medida, programación funcional. Es un lenguaje interpretado, dinámico y multiplataforma.      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work4' name='works' type='radio'>
+    <div class="relative">
+      <label for='work4'>MySQL</label>
+      <span class='date'>1994</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+		MySQL es un sistema de gestión de bases de datos relacional desarrollado bajo licencia dual: Licencia pública general/Licencia comercial por Oracle Corporation y está considerada como la base de datos de código abierto más popular del mundo, y una de las más populares en general junto a Oracle y Microsoft SQL Server, todo para entornos de desarrollo web.      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work3' name='works' type='radio'>
+    <div class="relative">
+      <label for='work3'>Apache</label>
+      <span class='date'>1995</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+		El servidor HTTP Apache es un servidor web HTTP de código abierto, para plataformas Unix (BSD, GNU/Linux, etc.), Microsoft Windows, Macintosh y otras, que implementa el protocolo HTTP/1.1 y la noción de sitio virtual según la normativa RFC 2616.      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work2' name='works' type='radio'>
+    <div class="relative">
+      <label for='work2'>Java</label>
+      <span class='date'>1995</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+        Java es un lenguaje de programación y una plataforma informática que fue comercializada por primera vez en 1995 por Sun Microsystems. Hay muchas aplicaciones y sitios web que no funcionarán, probablemente, a menos que tengan Java instalado, y cada día se crean más. Java es rápido, seguro y fiable. Desde ordenadores portátiles hasta centros de datos, desde consolas para juegos hasta computadoras avanzadas, desde teléfonos móviles hasta Internet, Java está en todas partes.      </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work1' name='works' type='radio'>
+    <div class="relative">
+      <label for='work1'>Guerra de los navegadores</label>
+      <span class='date'>1995</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+        La guerra de navegadores es el nombre popular dado a la competencia entre los navegadores web por el dominio del mercado. Específicamente el término se refiere a la lucha que hubo entre Microsoft, con su navegador Internet Explorer, y Netscape, con Netscape Navigator, por la dominación del mercado de navegadores web durante finales de los años 1990, ya que en esa época ninguna otra compañía ofrecía una competencia considerable en el mercado. </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work6' name='works' type='radio'>
+    <div class="relative">
+      <label for='work6'>Internet Explorer</label>
+      <span class='date'>1995</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+        Internet Explorera​ es una serie de navegadores web gráficos desarrollado por Microsoft para el sistema operativo Microsoft Windows desde 1995. Se lanzó por primera vez como parte del paquete complementario Plus! para Windows 95 ese año.      </p>
+    </div>
+  </li>	
+  <li class='work'>
+    <input class='radio' id='work7' name='works' type='radio'>
+    <div class="relative">
+      <label for='work7'>Netscape</label>
+      <span class='date'>1995</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+        Netscape Navigator fue un navegador web, el primer producto comercial de la compañía Netscape Communications creada por Marc Andreessen (uno de los autores de Mosaic) cuando se encontraba en el National Center for Supercomputing Applications (NCSA: Centro Nacional de Aplicaciones para Supercomputadoras) de la Universidad de Illinois en Urbana-Champaign.
+        El navegador original fue en su día el dominante en términos de cuota de uso, pero como resultado de la primera guerra de navegadores, perdió prácticamente toda su cuota en favor de Internet Explorer.</p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work8' name='works' type='radio'>
+    <div class="relative">
+      <label for='work8'>Opera</label>
+      <span class='date'>1995</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+        Opera es un navegador web creado por la empresa noruega Opera Software. Usa el motor de renderizado Blink. Tiene versiones para computadoras de escritorio, teléfonos móviles y tabletas.
+        El navegador comenzó en 1995 como un proyecto de investigación en Telenor, una empresa de telecomunicaciones noruega. En 1995, la empresa se ramificó y quedó en manos de Opera Software.</p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work9' name='works' type='radio'>
+    <div class="relative">
+      <label for='work9'>PHP</label>
+      <span class='date'>1995</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+        PHP es un lenguaje de programación de uso general que se adapta especialmente al desarrollo web. Fue creado inicialmente por el programador danés-canadiense Rasmus Lerdorf en 1994 y aparecio en 1995.     </p>
+    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work10' name='works' type='radio'>
+    <div class="relative">
+      <label for='work10'>ECMAScript</label>
+      <span class='date'>1997</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+        ECMAScript es una especificación de lenguaje de programación publicada por ECMA International. El desarrollo empezó en 1996 y estuvo basado en el popular lenguaje JavaScript propuesto como estándar por Netscape Communications Corporation. Actualmente está aceptado como el estándar ISO/IEC 22275:2018.
+
+        ECMAScript define un lenguaje de tipos dinámicos ligeramente inspirado en Java y otros lenguajes del estilo de C.    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work11' name='works' type='radio'>
+    <div class="relative">
+      <label for='work11'>PHPMyAdmin</label>
+      <span class='date'>1998</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+        phpMyAdmin es una herramienta escrita en PHP con la intención de manejar la administración de MySQL a través de páginas web, utilizando un navegador web. Actualmente puede crear y eliminar bases de datos, crear, eliminar y alterar tablas, borrar, editar y añadir campos, ejecutar cualquier sentencia SQL, administrar claves en campos, administrar privilegios, exportar datos en varios formatos y está disponible en 72 idiomas. Se encuentra disponible bajo la licencia GPL Versión 2.    </div>
+  </li>
+  <li class='work'>
+    <input class='radio' id='work12' name='works' type='radio'>
+    <div class="relative">
+      <label for='work12'>Tomcat</label>
+      <span class='date'>1999</span>
+      <span class='circle'></span>
+    </div>
+    <div class='content'>
+      <p>
+        Apache Tomcat (también llamado Jakarta Tomcat o simplemente Tomcat) funciona como un contenedor de servlets desarrollado bajo el proyecto Jakarta en la Apache Software Foundation. Tomcat implementa las especificaciones de los servlets y de JavaServer Pages (JSP) de Oracle Corporation (aunque creado por Sun Microsystems). </p> 
+      </li>
+      <li class='work'>
+        <input class='radio' id='work13' name='works' type='radio'>
+        <div class="relative">
+          <label for='work13'>ApacheAnt</label>
+          <span class='date'>2000</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Apache Ant es una herramienta usada en programación para la realización de tareas mecánicas y repetitivas,​ normalmente durante la fase de compilación y construcción (build). Es, por tanto, un software para procesos de automatización de compilación, similar a Make pero desarrollado en lenguaje Java y requiere la plataforma Java, así que es más apropiado para la construcción de proyectos Java. </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work14' name='works' type='radio'>
+        <div class="relative">
+          <label for='work14'>Struts</label>
+          <span class='date'>2000</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Struts es una herramienta de soporte para el desarrollo de aplicaciones Web del patrón MVC bajo la plataforma Java EE (Java Enterprise Edition). Struts se desarrollaba como parte del proyecto Jakarta de la Apache Software Foundation, pero actualmente es un proyecto conocido como Apache Struts.
+
+            Struts permite reducir el tiempo de desarrollo. Su carácter de "software libre" y su compatibilidad con todas las plataformas en las que Java Entreprise esté disponible lo convierten en una herramienta altamente disponible.          
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work15' name='works' type='radio'>
+        <div class="relative">
+          <label for='work15'>Eclipse</label>
+          <span class='date'>2001</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Eclipse es una plataforma de software compuesto por un conjunto de herramientas de programación de código abierto multiplataforma para desarrollar lo que el proyecto llama "Aplicaciones de Cliente Enriquecido", opuesto a las aplicaciones "Cliente-liviano" basadas en navegadores. Esta plataforma, típicamente ha sido usada para desarrollar entornos de desarrollo integrados (del inglés IDE), como el IDE de Java llamado Java Development Toolkit (JDT) y el compilador (ECJ) que se entrega como parte de Eclipse (y que son usados también para desarrollar el mismo Eclipse).
+
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work16' name='works' type='radio'>
+        <div class="relative">
+          <label for='work16'>Intelli J</label>
+          <span class='date'>2001</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            IntelliJ IDEA es un entorno de desarrollo integrado (IDE) para el desarrollo de programas informáticos. Es desarrollado por JetBrains (anteriormente conocido como IntelliJ), y está disponible en dos ediciones: edición para la comunidad1​ y edición comercial.
+
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work17' name='works' type='radio'>
+        <div class="relative">
+          <label for='work17'>Hibernate</label>
+          <span class='date'>2001</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Hibernate es una herramienta de mapeo objeto-relacional (ORM) para la plataforma Java (y disponible también para .Net con el nombre de NHibernate) que facilita el mapeo de atributos entre una base de datos relacional tradicional y el modelo de objetos de una aplicación, mediante archivos declarativos (XML) o anotaciones en los beans de las entidades que permiten establecer estas relaciones.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work18' name='works' type='radio'>
+        <div class="relative">
+          <label for='work18'>Maven</label>
+          <span class='date'>2002</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Maven es una herramienta de software para la gestión y construcción de proyectos Java creada por Jason van Zyl, de Sonatype, en 2002. Es similar en funcionalidad a Apache Ant, pero tiene un modelo de configuración de construcción más simple, basado en un formato XML.</p>      </li>
+      <li class='work'>
+        <input class='radio' id='work19' name='works' type='radio'>
+        <div class="relative">
+          <label for='work19'>Spring</label>
+          <span class='date'>2002</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Spring es un framework para el desarrollo de aplicaciones y contenedor de inversión de control, de código abierto para la plataforma Java.          
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work20' name='works' type='radio'>
+        <div class="relative">
+          <label for='work20'>Spring Boot</label>
+          <span class='date'>2002</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Spring Boot es una infraestructura ligera que elimina la mayor parte del trabajo de configurar las aplicaciones basadas en Spring.
+                    </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work21' name='works' type='radio'>
+        <div class="relative">
+          <label for='work21'>Spring Security</label>
+          <span class='date'>2003</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Spring Security es un framework Java/Java EE que proporciona autenticación, autorización y otras características de seguridad para aplicaciones empresariales. El proyecto se inició a finales de 2003 con el nombre de "Acegi Security" por Ben Alex, y se publicó bajo la licencia Apache en marzo de 2004. Posteriormente, Acegi se incorporó a la cartera de Spring como Spring Security, un subproyecto oficial de Spring. La primera versión pública bajo el nuevo nombre fue Spring Security 2.0.0 en abril de 2008, con soporte comercial y formación disponible en SpringSource.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work22' name='works' type='radio'>
+        <div class="relative">
+          <label for='work22'>Safari</label>
+          <span class='date'>2003</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Safari es un navegador web de código cerrado desarrollado por Apple Inc. Está disponible para macOS, iPadOS e iOS, y de 2007 a 2012, estaba disponible para Windows.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work23' name='works' type='radio'>
+        <div class="relative">
+          <label for='work23'>Firefox</label>
+          <span class='date'>2004</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Mozilla Firefox (o simplemente Firefox) es un navegador web libre y de código abierto desarrollado para distintas plataformas, está coordinado por la Corporación Mozilla y la Fundación Mozilla. Usa el motor Gecko para renderizar páginas web, el cual implementa actuales y futuros estándares web.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work24' name='works' type='radio'>
+        <div class="relative">
+          <label for='work24'>Django</label>
+          <span class='date'>2005</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Django es un framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador (MVC). Fue desarrollado en origen para gestionar varias páginas orientadas a noticias de la World Company de Lawrence, Kansas, y fue liberada al público bajo una licencia BSD en julio de 2005; el framework fue nombrado en alusión al guitarrista de jazz gitano Django Reinhardt.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work25' name='works' type='radio'>
+        <div class="relative">
+          <label for='work25'>Symfony</label>
+          <span class='date'>2005</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Symfony es un framework diseñado para desarrollar aplicaciones web basado en el patrón Modelo Vista Controlador. Para empezar, separa la lógica de negocio, la lógica de servidor y la presentación de la aplicación web. Proporciona varias herramientas y clases encaminadas a reducir el tiempo de desarrollo de una aplicación web compleja. Además, automatiza las tareas más comunes, permitiendo al desarrollador dedicarse por completo a los aspectos específicos de cada aplicación.          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work26' name='works' type='radio'>
+        <div class="relative">
+          <label for='work26'>JPA</label>
+          <span class='date'>2006</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Java Persistence API, más conocida por sus siglas JPA, es la API de persistencia desarrollada para la plataforma Java EE.
+
+            Es un framework del lenguaje de programación Java que maneja datos relacionales en aplicaciones usando la Plataforma Java en sus ediciones Standard (Java SE) y Enterprise (Java EE).          
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work27' name='works' type='radio'>
+        <div class="relative">
+          <label for='work27'>JQuery</label>
+          <span class='date'>2006</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web. Fue presentada el 14 de enero de 2006 en el BarCamp NYC. De acuerdo a un análisis de la Web (realizado en 2017) JQuery es la biblioteca de JavaScript más utilizada, por un amplio margen.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work28' name='works' type='radio'>
+        <div class="relative">
+          <label for='work28'>Liquibase</label>
+          <span class='date'>2006</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Liquibase es una biblioteca de código abierto independiente de la base de datos para rastrear, administrar y aplicar cambios en el esquema de la base de datos. Se inició en 2006 para permitir un seguimiento más fácil de los cambios en la base de datos, especialmente en un entorno de desarrollo de software ágil.          
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work29' name='works' type='radio'>
+        <div class="relative">
+          <label for='work29'>SonarQube</label>
+          <span class='date'>2006</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            SonarQube es una plataforma para evaluar código fuente. Es software libre y usa diversas herramientas de análisis estático de código fuente como Checkstyle, PMD o FindBugs para obtener métricas que pueden ayudar a mejorar la calidad del código de un programa.​
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work30' name='works' type='radio'>
+        <div class="relative">
+          <label for='work30'>GIT</label>
+          <span class='date'>2007</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Git es un software de control de versiones diseñado por Linus Torvalds, pensando en la eficiencia, la confiabilidad y compatibilidad del mantenimiento de versiones de aplicaciones cuando estas tienen un gran número de archivos de código fuente.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work31' name='works' type='radio'>
+        <div class="relative">
+          <label for='work31'>Grandle</label>
+          <span class='date'>2007</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Gradle es un sistema de automatización de construcción de código de software que construye sobre los conceptos de Apache Ant y Apache Maven e introduce un lenguaje específico del dominio basado en Groovy en vez de la forma XML utilizada por Apache Maven para declarar la configuración de proyecto.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work32' name='works' type='radio'>
+        <div class="relative">
+          <label for='work32'>Chrome</label>
+          <span class='date'>2008</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Google Chrome es un navegador web de código cerrado​​ desarrollado por Google, aunque derivado de proyectos de código abierto.​​​ Está disponible gratuitamente. El nombre del navegador deriva del término en inglés usado para el marco de la interfaz gráfica de usuario.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work33' name='works' type='radio'>
+        <div class="relative">
+          <label for='work33'>V8</label>
+          <span class='date'>2008</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            V8 es un motor de código abierto para JavaScript y WebAssembly, creado por Google, siendo su programador jefe Lars Bak.
+
+            La primera versión del motor V8 fue lanzada el 2 de septiembre de 2008 al mismo tiempo que la primera versión del navegador Google Chrome.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work34' name='works' type='radio'>
+        <div class="relative">
+          <label for='work34'>GSON</label>
+          <span class='date'>2008</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Gson (también conocido como Google Gson) es una biblioteca de código abierto para el lenguaje de programación Java que permite la serialización y deserialización entre objetos Java y su representación en notación JSON.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work35' name='works' type='radio'>
+        <div class="relative">
+          <label for='work35'>GitHub</label>
+          <span class='date'>2008</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            GitHub es una forja para alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de ordenador. El software que opera GitHub fue escrito en Ruby on Rails. Desde enero de 2010, GitHub opera bajo el nombre de GitHub, Inc. 
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work36' name='works' type='radio'>
+        <div class="relative">
+          <label for='work36'>Spring Roo</label>
+          <span class='date'>2009</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Spring Roo es una herramienta de software de código abierto que utiliza principios de convención sobre configuración para proporcionar un rápido desarrollo de aplicaciones de software empresarial basado en Java.          
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work37' name='works' type='radio'>
+        <div class="relative">
+          <label for='work37'>Underscore.js</label>
+          <span class='date'>2009</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Underscore.js es una biblioteca de JavaScript que proporciona funciones de utilidad para tareas de programación comunes. Es comparable a las características proporcionadas por Prototype.js y el lenguaje Ruby, pero opta por un diseño de programación funcional en lugar de extender prototipos de objetos.           </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work38' name='works' type='radio'>
+        <div class="relative">
+          <label for='work38'>Node.js</label>
+          <span class='date'>2009</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Node.js es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor basado en el lenguaje de programación JavaScript, asíncrono, con E/S de datos en una arquitectura orientada a eventos y basado en el motor V8 de Google.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work39' name='works' type='radio'>
+        <div class="relative">
+          <label for='work39'>Backbone.js</label>
+          <span class='date'>2010</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Backbone es una herramienta de desarrollo/API para el lenguaje de programación Javascript con un interfaz RESTful por JSON, basada en el paradigma de diseño de aplicaciones Modelo Vista Controlador.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work40' name='works' type='radio'>
+        <div class="relative">
+          <label for='work40'>AngularJS</label>
+          <span class='date'>2010</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            AngularJS, es un framework de JavaScript de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work41' name='works' type='radio'>
+        <div class="relative">
+          <label for='work41'>Express.js</label>
+          <span class='date'>2010</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Express.js, o simplemente Express, es un marco de aplicación web de back-end para Node.js, lanzado como software gratuito y de código abierto bajo la licencia MIT. Está diseñado para crear aplicaciones web y API. Se le ha llamado el marco de servidor estándar de facto para Node.js.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work42' name='works' type='radio'>
+        <div class="relative">
+          <label for='work42'>Laravel</label>
+          <span class='date'>2011</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Laravel es un framework de código abierto para desarrollar aplicaciones y servicios web con PHP 5, PHP 7 y PHP 8. Su filosofía es desarrollar código PHP de forma elegante y simple, evitando el "código espagueti". Fue creado en 2011 y tiene una gran influencia de frameworks como Ruby on Rails, Sinatra y ASP.NET MVC.​
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work43' name='works' type='radio'>
+        <div class="relative">
+          <label for='work43'>RxJS</label>
+          <span class='date'>2011</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            RxJS es una librería Javascript de programación reactiva que facilita la composición de código asíncrono basado en secuencias de observables. Esto lo hace gracias a tres patrones de diseño que veremos más adelante. El patrón Observer, el patrón Iterador y la programación funcional.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work44' name='works' type='radio'>
+        <div class="relative">
+          <label for='work44'>TypeScript</label>
+          <span class='date'>2012</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            TypeScript es un lenguaje de programación libre y de código abierto desarrollado y mantenido por Microsoft. Es un superconjunto de JavaScript, que esencialmente añade tipos estáticos y objetos basados en clases.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work44' name='works' type='radio'>
+        <div class="relative">
+          <label for='work44'>Hikari</label>
+          <span class='date'>2012</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Hikari CP es un Framework que permite crear pools de conexiones desarrollado en 2012.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work45' name='works' type='radio'>
+        <div class="relative">
+          <label for='work45'>Travis</label>
+          <span class='date'>2012</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Travis CI es un servicio de integración continua alojado que se utiliza para crear y probar proyectos de software alojados en GitHub y Bitbucket. Travis CI fue el primer servicio de CI que brindó servicios a proyectos de código abierto de forma gratuita y continúa haciéndolo.          
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work46' name='works' type='radio'>
+        <div class="relative">
+          <label for='work46'>JHipster</label>
+          <span class='date'>2013</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            JHipster es un generador de aplicaciones gratuito y de código abierto que se utiliza para desarrollar rápidamente aplicaciones web modernas y microservicios utilizando Angular o React y Spring Framework.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work47' name='works' type='radio'>
+        <div class="relative">
+          <label for='work47'>React</label>
+          <span class='date'>2013</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            React es una biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página. Es mantenido por Facebook y la comunidad de software libre. En el proyecto hay más de mil desarrolladores libres.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work48' name='works' type='radio'>
+        <div class="relative">
+          <label for='work48'>Flux</label>
+          <span class='date'>2013</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Flux es una arquitectura o patrón Javascript para UI que se ejecuta en un flujo de datos unidireccional y tiene un despachador centralizado. Es útil cuando tu proyecto tiene datos dinámicos y necesitas mantener los datos actualizados de manera efectiva. Fue creado por Facebook, y complementa a React como vista.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work49' name='works' type='radio'>
+        <div class="relative">
+          <label for='work49'>Docker</label>
+          <span class='date'>2013</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Docker es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.​
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work50' name='works' type='radio'>
+        <div class="relative">
+          <label for='work50'>NPM</label>
+          <span class='date'>2014</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            npm es el sistema de gestión de paquetes por defecto para Node.js, un entorno de ejecución para JavaScript, bajo Artistic License 2.0.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work51' name='works' type='radio'>
+        <div class="relative">
+          <label for='work51'>Vue.js</label>
+          <span class='date'>2014</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Vue.js es un framework de JavaScript de código abierto para la construcción de interfaces de usuario y aplicaciones de una sola página. Fue creado por Evan You, y es mantenido por él y por el resto de los miembros activos del equipo central que provienen de diversas empresas como Netlify y Netguru.​
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work52' name='works' type='radio'>
+        <div class="relative">
+          <label for='work52'>Visual Studio Code</label>
+          <span class='date'>2015</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Visual Studio Code es un editor de código fuente desarrollado por Microsoft para Windows, Linux y macOS. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work53' name='works' type='radio'>
+        <div class="relative">
+          <label for='work53'>Microsoft Edge</label>
+          <span class='date'>2015</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Microsoft Edge es un navegador web desarrollado por Microsoft, basado en Chromium. Fue lanzado por primera vez para Windows 10 y Xbox One en julio de 2015, luego para Android y iOS en octubre de 2017, ​​ para macOS en mayo de 2019, en Windows 7, 8 y 8.1 en enero de 2020 y para Linux en octubre de 2020.​
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work54' name='works' type='radio'>
+        <div class="relative">
+          <label for='work54'>Redux</label>
+          <span class='date'>2015</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Redux es una librería JavaScript de código abierto para el manejo del estado de las aplicaciones. Es comúnmente usada con otras librerías como React o Angular para la construcción de Interfaces de Usuario. Dan Abramov y Andrew Clark se inspiraron en otra librería de Facebook, Flux ​ para crear Redux.
+          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work55' name='works' type='radio'>
+        <div class="relative">
+          <label for='work55'>Angular</label>
+          <span class='date'>2016</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            Angular es un framework para aplicaciones web desarrollado en TypeScript, de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página.          </p>
+      </li>
+      <li class='work'>
+        <input class='radio' id='work56' name='works' type='radio'>
+        <div class="relative">
+          <label for='work56'>GitHub Actions</label>
+          <span class='date'>2019</span>
+          <span class='circle'></span>
+        </div>
+        <div class='content'>
+          <p>
+            GitHub Actions facilita la automatización de todos tus flujos de trabajo de software, ahora con CI/CD de primera clase. Construye, prueba y despliega tu código directamente desde GitHub. Haz que las revisiones de código, la gestión de ramas y la resolución de problemas funcionen como tú quieres.</p>      </li>
+</ul>
+<!-- partial -->
+  
+</body>
+</html>
