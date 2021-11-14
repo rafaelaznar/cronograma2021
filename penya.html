@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="./styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="text-center">
+            <h2 class="mt-5">Linea temporal</h2>
+            <br>
+            <hr>
+
+            <h1 class="display-1 mt-5">
+                Desplaza el cursor por las diferentes secciones
+            </h1>
+
+            <div id="contenedor" class="mt-5 mx-auto"></div>
+            <br>
+            <hr>
+
+            <div class="text-start ms-3 mt-5">
+                <h4 class="display-5 mb-3">Datos utilizados</h4>
+                <ul>
+                    <li>
+                        <p id="cliente-data"><strong>Cliente: </strong></p>
+                    </li>
+                    <li>
+                        <p id="servidor-data"><strong>Servidor: </strong></p>
+                    </li>
+                    <li>
+                        <p id="extra-data"><strong>Extra: </strong></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const DATA = [
+            {
+                "year": "1995",
+                "releases": {
+                    "cliente": [
+                        "Apache",
+                        "Guerra de los navegadores",
+                        "Internet Explorer",
+                        "Netscape (1994)",
+                        "Opera",
+                        "JavaScript"
+                    ],
+                    "servidor": [
+                        "JDK Beta",
+                        "PHP",
+                        "Python (1991)"
+                    ],
+                    "extra": [
+                        "Mysql"
+                    ]
+                }
+            },
+            {
+                "year": "1996",
+                "releases": {
+                    "servidor": [
+                        "JDK 1.0"
+                    ]
+                }
+            },
+            {
+                "year": "1997",
+                "releases": {
+                    "cliente": [
+                        "ECMAScript 1"
+                    ],
+                    "servidor": [
+                        "JDK 1.1"
+                    ]
+                }
+            },
+            {
+                "year": "1998",
+                "releases": {
+                    "cliente": [
+                        "ECMAScript 2"
+                    ],
+                    "servidor": [
+                        "J2SE 1.2"
+                    ],
+                    "extra": [
+                        "PhpMyAdmin"
+                    ]
+                }
+            },
+            {
+                "year": "1999",
+                "releases": {
+                    "cliente": [
+                        "ECMAScript 3"
+                    ],
+                    "extra": [
+                        "Tomcat"
+                    ]
+                }
+            },
+            {
+                "year": "2000",
+                "releases": {
+                    "servidor": [
+                        "J2SE 1.3",
+                        "Struts"
+                    ]
+                }
+            },
+            {
+                "year": "2001",
+                "releases": {
+                    "servidor": [
+                        "Hibernate",
+                        "Eclipse"
+                    ]
+                }
+            },
+            {
+                "year": "2002",
+                "releases": {
+                    "cliente": [
+                        "Firefox"
+                    ],
+                    "servidor": [
+                        "J2SE 1.4"
+                    ],
+                    "extra": [
+                        "Hikari"
+                    ]
+                }
+            },
+            {
+                "year": "2003",
+                "releases": {
+                    "cliente": [
+                        "Safari"
+                    ]
+                }
+            },
+            {
+                "year": "2004",
+                "releases": {
+                    "servidor": [
+                        "J2SE 5.0",
+                        "Maven",
+                        "Spring"
+                    ]
+                }
+            },
+            {
+                "year": "2005",
+                "releases": {
+                    "servidor": [
+                        "CakePHP"
+                    ],
+                    "extra": [
+                        "Git"
+                    ]
+                }
+            },
+            {
+                "year": "2006",
+                "releases": {
+                    "cliente": [
+                        "JQuery"
+                    ],
+                    "servidor": [
+                        "Java SE 6",
+                        "JPA"
+                    ],
+                    "extra": [
+                        "Liquibase",
+                        "Sonarqube"
+                    ]
+                }
+            },
+            {
+                "year": "2007",
+                "releases": {
+                    "servidor": [
+                        "Gradle"
+                    ]
+                }
+            },
+            {
+                "year": "2008",
+                "releases": {
+                    "cliente": [
+                        "Chrome",
+                        "V8"
+                    ],
+                    "servidor": [
+                        "Gson"
+                    ],
+                    "extra": [
+                        "Github"
+                    ]
+                }
+            },
+            {
+                "year": "2009",
+                "releases": {
+                    "cliente": [
+                        "ECMAScript 5",
+                        "Underscore"
+                    ],
+                    "servidor": [
+                        "NodeJS"
+                    ]
+                }
+            },
+            {
+                "year": "2010",
+                "releases": {
+                    "cliente": [
+                        "Angular JS"
+                    ],
+                    "servidor": [
+                        "NPM",
+                        "Express"
+                    ]
+                }
+            },
+            {
+                "year": "2011",
+                "releases": {
+                    "cliente": [
+                        "RxJS"
+                    ],
+                    "servidor": [
+                        "Java SE 7",
+                        "Laravel"
+                    ]
+                }
+            },
+            {
+                "year": "2012",
+                "releases": {
+                    "cliente": [
+                        "TypeScript"
+                    ]
+                }
+            },
+            {
+                "year": "2013",
+                "releases": {
+                    "cliente": [
+                        "React"
+                    ],
+                    "servidor": [
+                        "JHipster",
+                        "Django"
+                    ],
+                    "extra": [
+                        "Docker"
+                    ]
+                }
+            },
+            {
+                "year": "2014",
+                "releases": {
+                    "cliente": [
+                        "Vue"
+                    ],
+                    "servidor": [
+                        "Java SE LTS 8",
+                        "Spring boot"
+                    ]
+                }
+            },
+            {
+                "year": "2015",
+                "releases": {
+                    "cliente": [
+                        "Edge",
+                        "ECMAScript 6 (2015)",
+                        "Redux"
+                    ],
+                    "servidor": [
+                        "Spring roo (comprobar)",
+                        "Symfony"
+                    ],
+                    "extra": [
+                        "VSCode"
+                    ]
+                }
+            },
+            {
+                "year": "2016",
+                "releases": {
+                    "cliente": [
+                        "Angular",
+                        "ECMAScript 2016"
+                    ]
+                }
+            },
+            {
+                "year": "2017",
+                "releases": {
+                    "cliente": [
+                        "ECMAScript 2017"
+                    ],
+                    "servidor": [
+                        "Java SE 9"
+                    ]
+                }
+            },
+            {
+                "year": "2018",
+                "releases": {
+                    "cliente": [
+                        "ECMAScript 2018"
+                    ],
+                    "servidor": [
+                        "Java SE 10",
+                        "Java SE 11 LTS"
+                    ]
+                }
+            },
+            {
+                "year": "2019",
+                "releases": {
+                    "cliente": [
+                        "Flux",
+                        "ECMAScript 2019"
+                    ],
+                    "servidor": [
+                        "Java SE 12",
+                        "Java SE 13",
+                        "Spring security",
+                        "Intellij"
+                    ]
+                }
+            },
+            {
+                "year": "2020",
+                "releases": {
+                    "cliente": [
+                        "ECMAScript 2020",
+                        "Travis"
+                    ],
+                    "servidor": [
+                        "Java SE 14",
+                        "Java SE 15",
+                        "Ant"
+                    ]
+                }
+            },
+            {
+                "year": "2021",
+                "releases": {
+                    "cliente": [
+                        "Backbone",
+                        "ECMAScript 2021"
+                    ],
+                    "servidor": [
+                        "Java SE 16",
+                        "Java SE LTS 17"
+                    ],
+                    "extra": [
+                        "Github actions"
+                    ]
+                }
+            }
+        ];
+
+        document.addEventListener("DOMContentLoaded", generarContenido); 
+
+        function generarContenido() {
+            const cliente = document.getElementById("cliente-data");
+            const servidor = document.getElementById("servidor-data");
+            const extra = document.getElementById("extra-data");
+
+            DATA.forEach((data, index) => {
+                document.getElementById("contenedor").innerHTML += `
+                    <div
+                        class="d-inline-flex position-relative mb-2">
+                        <button
+                            class="btn btn-outline-dark"
+                            onmouseover="alternarContenido(${index})"
+                            onmouseout="alternarContenido(${index})">
+                            ${DATA[index].year}
+                        </button>
+                        <div 
+                            id="seccion-${index}"
+                            class="position-absolute invisible mt-5 border rounded"
+                            style="
+                                left: 50%;
+                                width: 200px;
+                                z-index: 100;
+                                transform: translate(-50%, 0)">
+                        </div>
+                    </div>`;
+
+                insertarDatos(data, index);
+            });
+
+            cliente.innerHTML = cliente.innerHTML.substring(0, cliente.innerHTML.length - 2);
+            servidor.innerHTML = servidor.innerHTML.substring(0, servidor.innerHTML.length - 2);
+            extra.innerHTML = extra.innerHTML.substring(0, extra.innerHTML.length - 2);
+        }
+
+        function insertarDatos(dato, index) {
+            const seccion = document.getElementById(`seccion-${index}`);
+            const cliente = document.getElementById("cliente-data");
+            const servidor = document.getElementById("servidor-data");
+            const extra = document.getElementById("extra-data");
+            const datos = dato.releases;
+            const separador = ", ";
+
+            seccion.innerHTML += `
+                <div id="">
+                    ${datos.cliente ? generarCabecera("Cliente") + generarCuerpo(datos.cliente) : ""}
+                    ${datos.servidor ? generarCabecera("Servidor") + generarCuerpo(datos.servidor) : ""}
+                    ${datos.extra ? generarCabecera("Extra") + generarCuerpo(datos.extra) : ""}
+                </div>`
+
+
+            cliente.innerHTML += datos.cliente ? datos.cliente.join(separador) + separador : "";
+            servidor.innerHTML += datos.servidor ? datos.servidor.join(separador) + separador : "";
+            extra.innerHTML += datos.extra ? datos.extra.join(separador) + separador : "";
+        }
+
+        function alternarContenido(index) {
+            const seccion = document.getElementById(`seccion-${index}`);
+
+            seccion.classList.contains("invisible") ? 
+                seccion.classList.remove("invisible") :
+                seccion.classList.add("invisible");
+        }
+
+        function generarCabecera(texto) {
+            return `
+                <div class="bg-dark text-white p-2">
+                    ${texto}
+                </div>`
+        }
+
+        function generarCuerpo(dato) {
+            return `
+                <div class="p-3 bg-white">
+                    ${dato.join('<div class="my-2"></div>')}
+                </div>`
+        }
+    </script>
+</body>
+</html>
