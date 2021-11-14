@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Linea del Tiempo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800'>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+html,
+body,
+.container {
+  height: 100%;
+  background-image: url(https://www.adobe.com/es/express/create/media_1976ac437d22b74991264b9b40b0baced24f65320.png?width=2000&format=webply&optimize=medium);
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 60px;
+  color:black;
+  font-style: italic;
+  font-weight: 800;
+  margin-bottom: 6%;
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.timeline {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 5px 25px 5px rgba(0, 0, 0, 0.2);
+}
+.timeline .swiper-container {
+  height: 600px;
+  width: 100%;
+  position: relative;
+}
+.timeline .swiper-wrapper {
+  transition: 2s cubic-bezier(0.68, -0.4, 0.27, 1.34) 0.2s;
+}
+.timeline .swiper-slide {
+  position: relative;
+  color: #fff;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.timeline .swiper-slide::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: -115%;
+  bottom: -10%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: -230px 0 150px 60vw rgba(0, 0, 0, 0.7);
+  border-radius: 100%;
+}
+.timeline .swiper-slide-content {
+  position: absolute;
+  text-align: center;
+  width: 80%;
+  max-width: 310px;
+  right: 50%;
+  top: 13%;
+  transform: translate(50%, 0);
+  font-size: 12px;
+  z-index: 2;
+}
+.timeline .swiper-slide .timeline-year {
+  display: block;
+  font-style: italic;
+  font-size: 42px;
+  margin-bottom: 50px;
+  transform: translate3d(20px, 0, 0);
+  color: #d4a024;
+  font-weight: 300;
+  opacity: 0;
+  transition: 0.2s ease 0.4s;
+}
+.timeline .swiper-slide .timeline-title {
+  font-weight: 800;
+  font-size: 34px;
+  margin: 0 0 30px;
+  opacity: 0;
+  transform: translate3d(20px, 0, 0);
+  transition: 0.2s ease 0.5s;
+}
+.timeline .swiper-slide .timeline-text {
+  line-height: 1.5;
+  opacity: 0;
+  transform: translate3d(20px, 0, 0);
+  transition: 0.2s ease 0.6s;
+}
+.timeline .swiper-slide-active .timeline-year {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: 0.4s ease 1.6s;
+}
+.timeline .swiper-slide-active .timeline-title {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: 0.4s ease 1.7s;
+}
+.timeline .swiper-slide-active .timeline-text {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: 0.4s ease 1.8s;
+}
+.timeline .swiper-pagination {
+  right: 15% !important;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px;
+  z-index: 1;
+}
+.timeline .swiper-pagination::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.timeline .swiper-pagination-bullet {
+  width: auto;
+  height: auto;
+  text-align: center;
+  opacity: 1;
+  background: transparent;
+  color: #d4a024;
+  margin: 15px 0 !important;
+  position: relative;
+}
+.timeline .swiper-pagination-bullet::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: -32.5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  background-color: #d4a024;
+  transform: scale(0);
+  transition: 0.2s;
+}
+.timeline .swiper-pagination-bullet-active {
+  color: #d4a024;
+}
+.timeline .swiper-pagination-bullet-active::before {
+  transform: scale(1);
+}
+.timeline .swiper-button-next,
+.timeline .swiper-button-prev {
+  background-size: 20px 20px;
+  top: 15%;
+  width: 20px;
+  height: 20px;
+  margin-top: 0;
+  z-index: 2;
+  transition: 0.2s;
+}
+.timeline .swiper-button-prev {
+  left: 8%;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23d4a024'%2F%3E%3C%2Fsvg%3E");
+}
+.timeline .swiper-button-prev:hover {
+  transform: translateX(-3px);
+}
+.timeline .swiper-button-next {
+  right: 8%;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23d4a024'%2F%3E%3C%2Fsvg%3E");
+}
+.timeline .swiper-button-next:hover {
+  transform: translateX(3px);
+}
+@media screen and (min-width: 768px) {
+  .timeline .swiper-slide::after {
+    right: -30%;
+    bottom: -8%;
+    width: 240px;
+    height: 50%;
+    box-shadow: -230px 0 150px 50vw rgba(0, 0, 0, 0.7);
+  }
+  /*letra*/
+  .timeline .swiper-slide-content {
+    right: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 310px;
+    font-size: 18px;
+    text-align: right;
+  }
+  .timeline .swiper-slide .timeline-year {
+    margin-bottom: 0;
+    font-size: 32px;
+  }
+  .timeline .swiper-slide .timeline-title {
+    font-size: 46px;
+    margin: 0;
+  }
+  .timeline .swiper-pagination {
+   /*display: flex;*/ 
+  }
+  .timeline .swiper-button-prev {
+    top: 15%;
+    left: auto;
+    right: 15%;
+    transform: rotate(90deg) translate(0, 10px);
+  }
+  .timeline .swiper-button-prev:hover {
+    transform: rotate(90deg) translate(-3px, 10px);
+  }
+  .timeline .swiper-button-next {
+    top: auto;
+    bottom: 15%;
+    right: 15%;
+    transform: rotate(90deg) translate(0, 10px);
+  }
+  .timeline .swiper-button-next:hover {
+    transform: rotate(90deg) translate(3px, 10px);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .timeline .swiper-slide::after {
+    right: -20%;
+    bottom: -12%;
+    width: 240px;
+    height: 50%;
+    box-shadow: -230px 0 150px 39vw rgba(0, 0, 0, 0.7);
+  }
+  .timeline .swiper-slide-content {
+    right: 25%;
+  }
+}
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="fondo" class="container">
+  <h1 class="title">Linea del Tiempo</h1>
+  <div class="timeline">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-image: url(https://i.blogs.es/1d8a5b/python1/1366_521.jpg" data-year="1991">
+          <div class="swiper-slide-content"><span class="timeline-year">1991</span>
+            <h4 class="timeline-title">Python</h4>
+            <p class="timeline-text">Python es un lenguaje de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código. Se trata de un lenguaje de programación multiparadigma, ya que soporta parcialmente la orientación a objetos, programación imperativa y, en menor medida, programación funcional. Es un lenguaje interpretado, dinámico y multiplataforma.</p>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrBtVoNNXsOC0nXSRP3HGLVgFaB0zBI0nOsPck1D1KfopBKLGz-vx2MCVfO4x2FLXe2g&usqp=CAU" data-year="1994">
+          <div class="swiper-slide-content"><span class="timeline-year">1994</span>
+            <h4 class="timeline-title">Mysql</h4>
+            <p class="timeline-text">MySQL es un sistema de gestión de bases de datos relacional desarrollado bajo licencia dual: Licencia pública general/Licencia comercial por Oracle Corporation y está considerada como la base de datos de código abierto más popular del mundo y una de las más populares en general junto a Oracle y Microsoft SQL Server, todo para entornos de desarrollo web.</p>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Apache_Software_Foundation_Logo_%282016%29.svg/1200px-Apache_Software_Foundation_Logo_%282016%29.svg.png" data-year="1995">
+          <div class="swiper-slide-content"><span class="timeline-year">1995</span>
+            <h4 class="timeline-title">Apache</h4>
+            <p class="timeline-text">Apache es un servidor web de de código abierto, multiplataforma y gratuito. Este web server es uno de los más utilizados en el mundo, actualmente el 43% de los sitios webs funcionan con él. Este servidor web desarrollado por Apache Software Foundation lleva en funcionamiento desde 1995.</p>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background-image: url(https://i.blogs.es/53044d/java/1366_521.jpg" data-year="1991-2021">
+          <div class="swiper-slide-content"><span class="timeline-year">1991-2021</span>
+            <h4 class="timeline-title">Java</h4>
+            <p class="timeline-text">Java es un lenguaje de programación y una plataforma informática que fue comercializada por primera vez en 1995 por Sun Microsystems. Hay muchas aplicaciones y sitios web que no funcionarán, probablemente, a menos que tengan Java instalado, y cada día se crean más. Java es rápido, seguro y fiable.</p>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background-image: url(https://i.emezeta.com/weblog/guerra-de-navegadores/browser-wars.jpg" data-year="1995-2000">
+          <div class="swiper-slide-content"><span class="timeline-year">1995-2000</span>
+            <h4 class="timeline-title">La Guerra de los Navegadores</h4>
+            <p class="timeline-text">La guerra de navegadores (en inglés: Browser Wars) es el nombre popular dado a la competencia entre los navegadores web por el dominio del mercado. Específicamente el término se refiere a la lucha que hubo entre Microsoft, con su navegador Internet Explorer, y Netscape, con Netscape Navigator, por la dominación del mercado de navegadores web (particularmente en la plataforma Windows) durante finales de los años 1990</p>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background-image: url(https://i.blogs.es/d395a8/internet-explorer-muerte-definitiva/1366_2000.jpg" data-year="1995">
+          <div class="swiper-slide-content"><span class="timeline-year">1995</span>
+            <h4 class="timeline-title">Internet Explorer</h4>
+            <p class="timeline-text">Internet Explorera es una serie de navegadores web gráficos desarrollado por Microsoft para el sistema operativo Microsoft Windows desde 1995. Fue uno de los navegadores web más utilizados de Internet desde 1999, con un pico máximo de cuota de utilización del 95 % entre 2002 y 2003. Sin embargo, dicha cuota de mercado había disminuido paulatinamente con los años debido a una renovada competencia por parte de otros navegadores </p>
+          </div>
+        </div>
+
+
+        <div class="swiper-slide" style="background-image: url(https://1000marcas.net/wp-content/uploads/2021/06/Netscape-Logo.png" data-year="1995">
+          <div class="swiper-slide-content"><span class="timeline-year">1995</span>
+            <h4 class="timeline-title">Netscape</h4>
+            <p class="timeline-text">Netscape Navigator fue un navegador web, el primer producto comercial de la compañía Netscape Communications creada por Marc Andreessen (uno de los autores de Mosaic). Netscape fue el primer navegador comercial. El navegador original fue en su día el dominante en términos de cuota de uso, pero como resultado de la primera guerra de navegadores, perdió prácticamente toda su cuota en favor de Internet Explorer. </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Opera_2015_logo.svg/1200px-Opera_2015_logo.svg.png" data-year="1995">
+          <div class="swiper-slide-content"><span class="timeline-year">1995</span>
+            <h4 class="timeline-title">Opera</h4>
+            <p class="timeline-text">Opera es un navegador web creado por la empresa noruega Opera Software. Usa el motor de renderizado Blink.Tiene versiones para computadoras de escritorio, teléfonos móviles y tabletas. Opera ha sido pionero en originar características que han sido posteriormente adoptadas por otros navegadores web, como por ejemplo el Acceso Rápido (Speed Dial).</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://kinsta.com/es/wp-content/uploads/sites/8/2018/05/qu%C3%A9-es-php-1-1024x512.png" data-year="1995">
+          <div class="swiper-slide-content"><span class="timeline-year">1995</span>
+            <h4 class="timeline-title">PHP</h4>
+            <p class="timeline-text">PHP es un lenguaje de programación de uso general que se adapta especialmente al desarrollo web. Fue creado inicialmente por el programador danés-canadiense Rasmus Lerdorf. En la actualidad,la implementación de referencia de PHP es producida por The PHP Group.​ El código PHP suele ser procesado en un servidor web por un intérprete PHP implementado como un módulo, un daemon o como un ejecutable de interfaz de entrada común. En un servidor web, el resultado del código PHP interpretado y ejecutado</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://babel.es/WebBabel/media/BlogImages/2B4.jpg" data-year="1997">
+          <div class="swiper-slide-content"><span class="timeline-year">1997</span>
+            <h4 class="timeline-title">ECMAScript</h4>
+            <p class="timeline-text">ECMAScript es una especificación de lenguaje de programación publicada por ECMA International. El desarrollo empezó en 1996 y estuvo basado en el popular lenguaje JavaScript propuesto como estándar por Netscape Communications Corporation. ECMAScript define un lenguaje de tipos dinámicos ligeramente inspirado en Java y otros lenguajes del estilo de C. Soporta algunas características de la programación orientada a objetos mediante objetos basados en prototipos y pseudoclases.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://www.coriaweb.hosting/wp-content/uploads/2016/06/logo-og.png" data-year="1998">
+          <div class="swiper-slide-content"><span class="timeline-year">1998</span>
+            <h4 class="timeline-title">phpMyAdmin</h4>
+            <p class="timeline-text">phpMyAdmin es una herramienta escrita en PHP con la intención de manejar la administración de MySQL a través de páginas web, utilizando un navegador web. Actualmente puede crear y eliminar bases de datos, crear, eliminar y alterar tablas, borrar, editar y añadir campos, ejecutar cualquier sentencia SQL, administrar claves en campos, administrar privilegios, exportar datos en varios formatos</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://i0.wp.com/unaaldia.hispasec.com/wp-content/uploads/2020/02/Captura-de-pantalla-de-2020-02-28-23-32-05.png?resize=582%2C274&ssl=1" data-year="1999">
+          <div class="swiper-slide-content"><span class="timeline-year">1999</span>
+            <h4 class="timeline-title">Tomcat</h4>
+            <p class="timeline-text">Apache Tomcat (también llamado Jakarta Tomcat o simplemente Tomcat) funciona como un contenedor de servlets desarrollado bajo el proyecto Jakarta en la Apache Software Foundation. Tomcat implementa las especificaciones de los servlets y de JavaServer Pages (JSP) de Oracle Corporation (aunque creado por Sun Microsystems).</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://myservername.com/img/selenium-tutorials/86/apache-ant-tool.png" data-year="2000">
+          <div class="swiper-slide-content"><span class="timeline-year">2000</span>
+            <h4 class="timeline-title">ApacheAnt</h4>
+            <p class="timeline-text">Apache Ant es una herramienta usada en programación para la realización de tareas mecánicas y repetitivas,normalmente durante la fase de compilación y construcción (build). Es, por tanto, un software para procesos de automatización de compilación. Esta herramienta, hecha en el lenguaje de programación Java, tiene la ventaja de no depender de las órdenes del shell de cada sistema operativo, sino que se basa en archivos de configuración XML y clases Java para la realización de las distintas tareas, siendo idónea como solución multi-plataforma.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://www.muyseguridad.net/wp-content/uploads/2018/09/Apache-Struts.jpg" data-year="2000">
+          <div class="swiper-slide-content"><span class="timeline-year">2000</span>
+            <h4 class="timeline-title">Struts</h4>
+            <p class="timeline-text">Struts es una herramienta de soporte para el desarrollo de aplicaciones Web del patrón MVC bajo la plataforma Java EE (Java Enterprise Edition). Struts permite reducir el tiempo de desarrollo. Su carácter de "software libre" y su compatibilidad con todas las plataformas en las que Java Entreprise esté disponible lo convierten en una herramienta altamente disponible.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://img2.freepng.es/20180615/acp/kisspng-eclipse-foundation-integrated-development-environm-eclipse-sirius-5b23773f440777.6807389015290509432787.jpg" data-year="2001">
+          <div class="swiper-slide-content"><span class="timeline-year">2001</span>
+            <h4 class="timeline-title">Eclipse</h4>
+            <p class="timeline-text">Eclipse es una plataforma de software compuesto por un conjunto de herramientas de programación de código abierto multiplataforma para desarrollar lo que el proyecto llama "Aplicaciones de Cliente Enriquecido", opuesto a las aplicaciones "Cliente-liviano" basadas en navegadores. Esta plataforma, típicamente ha sido usada para desarrollar entornos de desarrollo integrados Eclipse fue desarrollado originalmente por IBM como el sucesor de su familia de herramientas para VisualAge. </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(http://blogs.ubc.ca/labsos/files/2020/08/IntelliJ-300x103.png" data-year="2001">
+          <div class="swiper-slide-content"><span class="timeline-year">2001</span>
+            <h4 class="timeline-title">Intelij</h4>
+            <p class="timeline-text">IntelliJ IDEA es un entorno de desarrollo integrado (IDE) para el desarrollo de programas informáticos. Es desarrollado por JetBrains (anteriormente conocido como IntelliJ), y está disponible en dos ediciones: edición para la comunidad1​ y edición comercial.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://i2.wp.com/getbrain.fr/wp-content/uploads/2016/06/hibernate_logo_a.png?fit=770%2C346&ssl=1" data-year="2001">
+          <div class="swiper-slide-content"><span class="timeline-year">2001</span>
+            <h4 class="timeline-title">Hibernate</h4>
+            <p class="timeline-text">Hibernate es una herramienta de mapeo objeto-relacional (ORM) para la plataforma Java  que facilita el mapeo de atributos entre una base de datos relacional tradicional y el modelo de objetos de una aplicación, mediante archivos declarativos (XML) o anotaciones en los beans de las entidades que permiten establecer estas relaciones. Hibernate es software libre, este es distribuido bajo los términos de la licencia GNU LGPL.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Apache_Maven_logo.svg/1280px-Apache_Maven_logo.svg.png" data-year="2002">
+          <div class="swiper-slide-content"><span class="timeline-year">2002</span>
+            <h4 class="timeline-title">Maven</h4>
+            <p class="timeline-text">Maven es una herramienta de software para la gestión y construcción de proyectos Java creada por Jason van Zyl, de Sonatype, en 2002. Es similar en funcionalidad a Apache Ant , pero tiene un modelo de configuración de construcción más simple, basado en un formato XML. Maven utiliza un Project Object Model (POM) para describir el proyecto de software a construir, sus dependencias de otros módulos y componentes externos</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://unpocodejava.files.wordpress.com/2019/09/top-10-reasons-to-use-spring-framework-1.jpg" data-year="2002">
+          <div class="swiper-slide-content"><span class="timeline-year">2002</span>
+            <h4 class="timeline-title">Spring</h4>
+            <p class="timeline-text">Spring es un framework para el desarrollo de aplicaciones y contenedor de inversión de control, de código abierto para la plataforma Java. ​La primera versión fue escrita por Rod Johnson, quien lo lanzó junto a la publicación de su libro Expert One-on-One J2EE Design and Development . El framework fue lanzado inicialmente bajo la licencia Apache 2.0. </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://cleventy.com/wp-content/uploads/2020/05/spring-boot.png" data-year="2002">
+          <div class="swiper-slide-content"><span class="timeline-year">2002</span>
+            <h4 class="timeline-title">Spring boot</h4>
+            <p class="timeline-text">Java Spring Boot es una de las herramientas principales del ecosistema de desarrollo web backend con Java. Para ello debes comprender todos estos conceptos que nacen a partir de este proyecto que nos provee Spring. Primero que todo hay que hacer énfasis en que Spring Boot NO es Spring y que este proyecto surge de la necesidad de hacer aplicaciones Java sin tantas complicaciones de configuración y toda problemática que eso conlleva.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://www.adictosaltrabajo.com/wp-content/uploads/2020/05/spring_security-e1588763146414.jpg" data-year="2003">
+          <div class="swiper-slide-content"><span class="timeline-year">2003</span>
+            <h4 class="timeline-title">Spring Security</h4>
+            <p class="timeline-text">Spring Security es el módulo del proyecto Spring para incorporar seguridad de acceso a las aplicaciones hechas con Spring Boot. Permite controles de acceso por URL entre otras muchas opciones y es más que suficiente para proteger tu programa.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://i0.wp.com/unaaldia.hispasec.com/wp-content/uploads/2018/11/og.png?resize=1024%2C538&ssl=1" data-year="2003">
+          <div class="swiper-slide-content"><span class="timeline-year">2003</span>
+            <h4 class="timeline-title">Safari</h4>
+            <p class="timeline-text">Safari es un navegador web de código cerrado desarrollado por Apple Inc. Está disponible para macOS, iPadOS e iOS, y de 2007 a 2012, estaba disponible para Windows.Antes del lanzamiento de Safari, Apple incluía el navegador Internet Explorer para Mac de Microsoft a sus ordenadores como navegador predeterminado.​La primera versión beta de Safari fue presentada en la exposición Macworld el 7 de enero de 2003 y fue liberada en forma de beta pública</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2019/03/Firefox.jpg" data-year="2004">
+          <div class="swiper-slide-content"><span class="timeline-year">2004</span>
+            <h4 class="timeline-title">Firefox</h4>
+            <p class="timeline-text">Mozilla Firefox (o simplemente Firefox) es un navegador web libre y de código abierto desarrollado para distintas plataformas, está coordinado por la Corporación Mozilla y la Fundación Mozilla. Usa el motor Gecko para renderizar páginas web, el cual implementa actuales y futuros estándares web.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://elwhileinfinito.files.wordpress.com/2015/03/django_logo1.png?w=517&h=269" data-year="2005">
+          <div class="swiper-slide-content"><span class="timeline-year">2005</span>
+            <h4 class="timeline-title">django</h4>
+            <p class="timeline-text">Django es un framework de desarrollo web de código abierto, escrito en Python, que respeta el patrón de diseño conocido como modelo–vista–controlador (MVC). Fue desarrollado en origen para gestionar varias páginas orientadas a noticias de la World Company de Lawrence, Kansas, y fue liberada al público bajo una licencia BSD en julio de 2005; el framework fue nombrado en alusión al guitarrista de jazz gitano Django Reinhardt.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://www.coriaweb.hosting/wp-content/uploads/2016/11/symfony_logo.png" data-year="2005">
+          <div class="swiper-slide-content"><span class="timeline-year">2005</span>
+            <h4 class="timeline-title">Symfony</h4>
+            <p class="timeline-text">Symfony es un framework diseñado para desarrollar aplicaciones web basado en el patrón Modelo Vista Controlador. Para empezar, separa la lógica de negocio, la lógica de servidor y la presentación de la aplicación web. Proporciona varias herramientas y clases encaminadas a reducir el tiempo de desarrollo de una aplicación web compleja. Además, automatiza las tareas más comunes, permitiendo al desarrollador dedicarse por completo a los aspectos específicos de cada aplicación.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://ichi.pro/assets/images/max/724/1*cK3YjSutwWZidAzq705Faw.jpeg" data-year="2006">
+          <div class="swiper-slide-content"><span class="timeline-year">2006</span>
+            <h4 class="timeline-title">JPA</h4>
+            <p class="timeline-text">Java Persistence API, más conocida por sus siglas JPA, es la API de persistencia desarrollada para la plataforma Java EE.Es un framework del lenguaje de programación Java que maneja datos relacionales en aplicaciones usando la Plataforma Java en sus ediciones Standard (Java SE) y Enterprise (Java EE).</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://betosanro.com/wp-content/uploads/2020/12/article_02065_.jpg" data-year="2006">
+          <div class="swiper-slide-content"><span class="timeline-year">2006</span>
+            <h4 class="timeline-title">jQuery</h4>
+            <p class="timeline-text">jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.Fue presentada el 14 de enero de 2006 en el BarCamp NYC. De acuerdo a un análisis de la Web (realizado en 2017) JQuery es la biblioteca de JavaScript más utilizada, por un amplio margen.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://i.ytimg.com/vi/5AnCHzVa_7o/maxresdefault.jpg" data-year="2006">
+          <div class="swiper-slide-content"><span class="timeline-year">2006</span>
+            <h4 class="timeline-title">Liquibase</h4>
+            <p class="timeline-text">Liquibase is an open-source database-independent library for tracking, managing and applying database schema changes. It was started in 2006 to allow easier tracking of database changes, especially in an agile software development environment.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://i2.wp.com/www.quantika14.com/blog/seguridad-inform%C3%A1tica-sevilla/uploads/sonarqube_logo_720.png" data-year="2006">
+          <div class="swiper-slide-content"><span class="timeline-year">2006</span>
+            <h4 class="timeline-title">Sonarqube</h4>
+            <p class="timeline-text">SonarQube (conocido anteriormente como Sonar) es una plataforma para evaluar código fuente. Es software libre y usa diversas herramientas de análisis estático de código fuente como Checkstyle, PMD o FindBugs para obtener métricas que pueden ayudar a mejorar la calidad del código de un programa. </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://www.campusmvp.es/recursos/image.axd?picture=/2020/2T/git-post-blog.png" data-year="2007">
+          <div class="swiper-slide-content"><span class="timeline-year">2007</span>
+            <h4 class="timeline-title">GIT</h4>
+            <p class="timeline-text">Git  es un software de control de versiones diseñado por Linus Torvalds, pensando en la eficiencia, la confiabilidad y compatibilidad del mantenimiento de versiones de aplicaciones cuando estas tienen un gran número de archivos de código fuente. Su propósito es llevar registro de los cambios en archivos de computadora incluyendo coordinar el trabajo que varias personas realizan sobre archivos compartidos en un repositorio de código.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://dc722jrlp2zu8.cloudfront.net/media/cache/92/c8/92c86da2479e4074dce261be059d8403.webp" data-year="2007">
+          <div class="swiper-slide-content"><span class="timeline-year">2007</span>
+            <h4 class="timeline-title">Gradle</h4>
+            <p class="timeline-text">Gradle es un sistema de automatización de construcción de código de software que construye sobre los conceptos de Apache Ant y Apache Maven e introduce un lenguaje específico del dominio (DSL)  Gradle utiliza un grafo acíclico dirigido ("DAG") para determinar el orden en el que las tareas pueden ser ejecutadas. Gradle fue diseñado para construcciones multi-proyecto las cuales pueden crecer para ser bastante grandes, y da apoyo a construcciones incrementales determinando inteligentemente qué partes del árbol de construcción están actualizadas.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://softwgroup.com.mx/wp-content/uploads/2019/11/googlechrome.png" data-year="2008">
+          <div class="swiper-slide-content"><span class="timeline-year">2008</span>
+            <h4 class="timeline-title">Chrome</h4>
+            <p class="timeline-text">Google Chrome es un navegador web de código cerrado desarrollado por Google. Está disponible gratuitamente. El nombre del navegador deriva del término en inglés usado para el marco de la interfaz gráfica de usuario («chrome»).Cuenta con más de 900 millones de usuarios y se considerada el navegador más usado de la Web, logrando la popularidad mundial en la primera posición. Los lanzamientos de Chrome son obtenidos a partir de Chromium, el proyecto de software libre que también sirve de base para el sistema operativo Chrome OS.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://www.digital55.com/wp-content/uploads/2019/12/google-actualiza-su-famoso-motor-v8-a-su-octava-version.png" data-year="2008">
+          <div class="swiper-slide-content"><span class="timeline-year">2008</span>
+            <h4 class="timeline-title">V8</h4>
+            <p class="timeline-text">V8 es un motor de código abierto para JavaScript y WebAssembly, creado por Google, siendo su programador jefe Lars Bak. La primera versión del motor V8 fue lanzada el 2 de septiembre de 2008 al mismo tiempo que la primera versión del navegador Google Chrome.Cabe destacar también que este motor no solo ha sido usado del lado del cliente, sino también del lado del servidor en Couchbase, MongoDB y Node.js.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://proyectodesarrollador.com/wp-content/uploads/2018/06/gson-1024x512.png" data-year="2008">
+          <div class="swiper-slide-content"><span class="timeline-year">2008</span>
+            <h4 class="timeline-title">Gson</h4>
+            <p class="timeline-text">Gson (también conocido como Google Gson) es una biblioteca de código abierto para el lenguaje de programación Java que permite la serialización y deserialización entre objetos Java y su representación en notación JSON</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://i1.wp.com/unaaldia.hispasec.com/wp-content/uploads/2021/04/github.png?fit=1150%2C465&ssl=1" data-year="2008">
+          <div class="swiper-slide-content"><span class="timeline-year">2008</span>
+            <h4 class="timeline-title">GitHub</h4>
+            <p class="timeline-text">GitHub es una forja (plataforma de desarrollo colaborativo) para alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de ordenador. El software que opera GitHub fue escrito en Ruby on Rails. El código de los proyectos alojados en GitHub se almacena típicamente de forma pública. GitHub continúa siendo la plataforma más importante de colaboración para proyectos Open Source.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://keyholesoftware.com/wp-content/uploads/Spring-roo.jpg.webp" data-year="2009">
+          <div class="swiper-slide-content"><span class="timeline-year">2009</span>
+            <h4 class="timeline-title">Springroo</h4>
+            <p class="timeline-text">Spring Roo es una herramienta de software de código abierto que utiliza los principios de convención sobre configuración para proporcionar un rápido desarrollo de aplicaciones de software empresarial basado en Java. </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_d42af4f12a15c641266c8385435885f4/underscore-js.png" data-year="2009">
+          <div class="swiper-slide-content"><span class="timeline-year">2009</span>
+            <h4 class="timeline-title">Underscore.js</h4>
+            <p class="timeline-text">Underscore.js es una biblioteca de JavaScript que proporciona funciones de utilidad para tareas comunes de programación. Es comparable a las características proporcionadas por Prototype.js y el lenguaje Ruby, pero opta por un diseño de programación funcional en lugar de extender los prototipos de objetos. Underscore.js fue creado por Jeremy Ashkenas, también conocido por Backbone.js y CoffeeScript.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://res.cloudinary.com/practicaldev/image/fetch/s--vrvqSDHx--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/s15ubgod56c7butyt7eu.jpg" data-year="2009">
+          <div class="swiper-slide-content"><span class="timeline-year">2009</span>
+            <h4 class="timeline-title">Node.js</h4>
+            <p class="timeline-text">Node.js es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor (pero no limitándose a ello) basado en el lenguaje de programación JavaScript, asíncrono, con E/S de datos en una arquitectura orientada a eventos y basado en el motor V8 de Google. Fue creado con el enfoque de ser útil en la creación de programas de red altamente escalables, como por ejemplo, servidores web. Fue creado por Ryan Dahl. Al contrario que la mayoría del código JavaScript, no se ejecuta en un navegador, sino en el servidor. </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://www.etatvasoft.com/insights/wp-content/uploads/2017/02/b-thumb-img8.jpg" data-year="2010">
+          <div class="swiper-slide-content"><span class="timeline-year">2010</span>
+            <h4 class="timeline-title">BlackBone.js</h4>
+            <p class="timeline-text">Backbone es una herramienta de desarrollo/API para el lenguaje de programación Javascript con un interfaz RESTful por JSON , basada en el paradigma de diseño de aplicaciones Modelo Vista Controlador. Está diseñada para desarrollar aplicaciones de una única página y para mantener las diferentes partes de las aplicaciones web sincronizadas. Fue desarrollado por Jeremy Ashkenas, que también escribió CoffeeScript</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://blog.zenika.com/wp-content/uploads/2015/01/vignette-angularjs-1.jpg" data-year="2010">
+          <div class="swiper-slide-content"><span class="timeline-year">2010</span>
+            <h4 class="timeline-title">AngularJS</h4>
+            <p class="timeline-text">AngularJS  es un framework de JavaScript de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página. Su objetivo es aumentar las aplicaciones basadas en navegador con capacidad de Modelo Vista Controlador (MVC), en un esfuerzo para hacer que el desarrollo y las pruebas sean más fáciles. La biblioteca lee el HTML que contiene atributos de las etiquetas personalizadas adicionales, entonces obedece a las directivas de los atributos personalizados</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://ichi.pro/assets/images/max/724/1*XP-mZOrIqX7OsFInN2ngRQ.png" data-year="2010">
+          <div class="swiper-slide-content"><span class="timeline-year">2010</span>
+            <h4 class="timeline-title">Express.js</h4>
+            <p class="timeline-text">Express.js, o simplemente Express, es un marco de trabajo de aplicaciones web para Node.js, publicado como software libre y de código abierto bajo la licencia MIT. Está diseñado para construir aplicaciones web y APIs. El autor original, TJ Holowaychuk, lo describió como un servidor inspirado en Sinatra, lo que significa que es relativamente mínimo con muchas características disponibles como plugins. </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://cdn.okitup.com/wp-content/uploads/2019/10/logo_laravel.png" data-year="2011">
+          <div class="swiper-slide-content"><span class="timeline-year">2011</span>
+            <h4 class="timeline-title">Laravel</h4>
+            <p class="timeline-text">Laravel es un framework de código abierto para desarrollar aplicaciones y servicios web con PHP 5, PHP 7 y PHP 8. Su filosofía es desarrollar código PHP de forma elegante y simple, evitando el "código espagueti". Fue creado en 2011 y tiene una gran influencia de frameworks como Ruby on Rails, Sinatra y ASP.NET MVC. </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://miro.medium.com/max/1200/1*gD37OB2-PtMqZdk3X1YnEQ.png" data-year="2011">
+          <div class="swiper-slide-content"><span class="timeline-year">2011</span>
+            <h4 class="timeline-title">RXJS</h4>
+            <p class="timeline-text">RxJS es una librería Javascript de programación reactiva que facilita la composición de código asíncrono basado en secuencias de observables. Esto lo hace gracias a tres patrones de diseño que veremos más adelante. El patrón Observer, el patrón Iterador y la programación funcional</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://t1.daumcdn.net/cfile/tistory/2455034257594CC82D" data-year="2012">
+          <div class="swiper-slide-content"><span class="timeline-year">2012</span>
+            <h4 class="timeline-title">TypeScript</h4>
+            <p class="timeline-text">TypeScript es un lenguaje de programación libre y de código abierto desarrollado y mantenido por Microsoft. Es un superconjunto de JavaScript, que esencialmente añade tipos estáticos y objetos basados en clases.TypeScript es usado para desarrollar aplicaciones JavaScript que se ejecutarán en el lado del cliente o del servidor, o extensiones para programas (Node.js y Deno). TypeScript extiende la sintaxis de JavaScript, por tanto cualquier código JavaScript existente debería funcionar sin problemas.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://2.bp.blogspot.com/-ZUdd2Fnn-0g/WtmaF7sus-I/AAAAAAAADAU/ooKUNvs16ZIgjjR56ycAYTAfsHBdIdkggCLcBGAs/s280/hikariCP.png" data-year="2012">
+          <div class="swiper-slide-content"><span class="timeline-year">2012</span>
+            <h4 class="timeline-title">Hikari</h4>
+            <p class="timeline-text">HikariCP es una librería Java que implementa un pool de conexiones JDBC muy ligero (70 Kb) y con “zero-overhead”</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://docs.travis-ci.com/images/TravisCI-Full-Color.png" data-year="2012">
+          <div class="swiper-slide-content"><span class="timeline-year">2012</span>
+            <h4 class="timeline-title">Travis CL</h4>
+            <p class="timeline-text">Travis CI es un servicio de integración continua alojado que se utiliza para construir y probar proyectos de software alojados en GitHub y Bitbucket .Travis CI fue el primer servicio de CI que proporcionó servicios a proyectos de código abierto de forma gratuita y continúa haciéndolo. El código fuente es técnicamente software libre y está disponible por partes en GitHub bajo licencias permisivas</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(http://appandgosolutions.com/wp-content/uploads/2019/03/hipster.png" data-year="2013">
+          <div class="swiper-slide-content"><span class="timeline-year">2013</span>
+            <h4 class="timeline-title">JHipster</h4>
+            <p class="timeline-text">JHipster es un generador de aplicaciones gratuito y de código abierto que se utiliza para desarrollar rápidamente aplicaciones web modernas y microservicios utilizando Angular o React y Spring Framework</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://res.cloudinary.com/practicaldev/image/fetch/s--BxQ7CA2Z--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/grki97glctbmjydzqejw.png" data-year="2013">
+          <div class="swiper-slide-content"><span class="timeline-year">2013</span>
+            <h4 class="timeline-title">React</h4>
+            <p class="timeline-text">React es una biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página. Es mantenido por Facebook y la comunidad de software libre. En el proyecto hay más de mil desarrolladores libres.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(http://blog.koalite.com/wp-content/uploads/flux-logo.png" data-year="2013">
+          <div class="swiper-slide-content"><span class="timeline-year">2013</span>
+            <h4 class="timeline-title">Flux</h4>
+            <p class="timeline-text">Flux  es una arquitectura para el manejo y el flujo de los datos en una aplicación web, particularmente en el Front-End. Fue ideada por Facebook y vendría a sustituir el patrón MVC (o MVVM). Flux propone una arquitectura en la que el flujo de datos es unidireccional. Los datos viajan desde la vista por medio de acciones y llegan a un Store desde el cual se actualizará la vista de nuevo.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://www.tadviser.ru/images/thumb/2/22/Docker-dark.png/840px-Docker-dark.png" data-year="2013">
+          <div class="swiper-slide-content"><span class="timeline-year">2013</span>
+            <h4 class="timeline-title">Docker</h4>
+            <p class="timeline-text">Docker es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.​</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/800px-Npm-logo.svg.png" data-year="2014">
+          <div class="swiper-slide-content"><span class="timeline-year">2014</span>
+            <h4 class="timeline-title">NPM</h4>
+            <p class="timeline-text">npm es el Node Package Manager que viene incluido y ayuda a cada desarrollo asociado a Node. Durante años, Node ha sido ampliamente utilizado por los desarrolladores de JavaScript para compartir herramientas, instalar varios módulos y administrar sus dependencias. Es por eso que es fundamental que las personas que trabajan con Node.js entiendan qué es npm.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://miro.medium.com/max/850/0*BRrBBgjCGAzRniV8.jpg" data-year="2014">
+          <div class="swiper-slide-content"><span class="timeline-year">2014</span>
+            <h4 class="timeline-title">Vue.js</h4>
+            <p class="timeline-text">Vue.js es un framework de JavaScript de código abierto para la construcción de interfaces de usuario y aplicaciones de una sola página. Fue creado por Evan You, y es mantenido por él y por el resto de los miembros activos del equipo central que provienen de diversas empresas como Netlify y Netguru.​</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://www.ochobitshacenunbyte.com/wp-content/uploads/2020/05/portada-vsc-microsoft.jpg" data-year="2015">
+          <div class="swiper-slide-content"><span class="timeline-year">2015</span>
+            <h4 class="timeline-title">VSCode</h4>
+            <p class="timeline-text">
+              Visual Studio Code es un editor de código fuente desarrollado por Microsoft para Windows, Linux y macOS. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código. También es personalizable, por lo que los usuarios pueden cambiar el tema del editor, los atajos de teclado y las preferencias. Es gratuito y de código abierto, aunque la descarga oficial está bajo software privativo e incluye características personalizadas por Microsoft. </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://as.com/meristation/imagenes/2020/01/30/betech/1580403562_224576_1580412567_noticia_normal_recorte1.jpg" data-year="2015">
+          <div class="swiper-slide-content"><span class="timeline-year">2015</span>
+            <h4 class="timeline-title">Microsoft Edge</h4>
+            <p class="timeline-text">Microsoft Edge es un navegador web desarrollado por Microsoft, basado en Chromium. Fue lanzado por primera vez para Windows 10 y Xbox One en julio de 2015, luego para Android y iOS en octubre de 2017, ​​ para macOS en mayo de 2019, en Windows 7, 8 y 8.1 en enero de 2020 y para Linux en octubre de 2020.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://miro.medium.com/max/700/0*R73zsxhSuasT9MKR.png" data-year="2015">
+          <div class="swiper-slide-content"><span class="timeline-year">2015</span>
+            <h4 class="timeline-title">Redux</h4>
+            <p class="timeline-text">Redux es una librería JavaScript de código abierto para el manejo del estado de las aplicaciones. Es comúnmente usada con otras librerías como React o Angular para la construcción de Interfaces de Usuario. Dan Abramov y Andrew Clark se inspiraron en otra librería de Facebook, Flux ​ para crear Redux.</p>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url(https://res.cloudinary.com/practicaldev/image/fetch/s--DYfpZirq--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://miro.medium.com/max/990/1%2AOc2PsJ-QKOUG2I8J3HNmWQ.png" data-year="2016">
+          <div class="swiper-slide-content"><span class="timeline-year">2016</span>
+            <h4 class="timeline-title">Angular</h4>
+            <p class="timeline-text">Angular es un framework para aplicaciones web desarrollado en TypeScript, de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página. Su objetivo es aumentar las aplicaciones basadas en navegador con capacidad de Modelo Vista Controlador (MVC), en un esfuerzo para hacer que el desarrollo y las pruebas sean más fáciles.</p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js'></script>
+  <script>
+    var timelineSwiper = new Swiper ('.timeline .swiper-container', {
+  direction: 'vertical',
+  loop: false,
+  speed: 1600,
+  pagination: '.swiper-pagination',
+  paginationBulletRender: function (swiper, index, className) {
+    var year = document.querySelectorAll('.swiper-slide')[index].getAttribute('data-year');
+    return '<span class="' + className + '">' + year + '</span>';
+  },
+  paginationClickable: true,
+  nextButton: '.swiper-button-next',
+  prevButton: '.swiper-button-prev',
+  breakpoints: {
+    768: {
+      direction: 'horizontal',
+    }
+  }
+});
+  </script>
+
+</body>
+</html>
