@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Linea del tiempo</title>
+  <link rel="stylesheet" href="./style.css">
+  
+  <style>
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,900);
+
+body{
+  font-family: 'Raleway', sans-serif;
+  color: #333;
+}
+
+header h1{
+  text-align: center;
+  font-weight: bold;
+  margin-top: 0;
+}
+  
+ header p{
+   text-align: center;
+   margin-bottom: 0;
+ }
+
+.hexa{
+  border: 0px;
+  float: left;
+  text-align: center;
+  height: 35px;
+  width: 60px;
+  font-size: 22px;
+  background: #f0f0f0;
+  color: #3c3c3c;
+  position: relative;
+  margin-top: 15px;
+}
+
+.hexa:before{
+  content: ""; 
+  position: absolute; 
+  left: 0; 
+  width: 0; 
+  height: 0;
+  border-bottom: 15px solid #f0f0f0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  top: -15px;
+}
+
+.hexa:after{
+  content: ""; 
+  position: absolute; 
+  left: 0; 
+  width: 0; 
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 15px solid #f0f0f0;
+  bottom: -15px;
+}
+
+.timeline {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  margin-top: 20px;
+  list-style-type: none;
+}
+
+.timeline:before {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  content: ' ';
+  display: block;
+  width: 2px;
+  height: 100%;
+  margin-left: -1px;
+  background: rgb(213,213,213);
+  background: -moz-linear-gradient(top, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(125,185,232,1)));
+  background: -webkit-linear-gradient(top, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
+  background: -o-linear-gradient(top, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
+  background: -ms-linear-gradient(top, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
+  background: linear-gradient(to bottom, rgba(213,213,213,0) 0%, rgb(213,213,213) 8%, rgb(213,213,213) 92%, rgba(213,213,213,0) 100%);
+  z-index: 5;
+}
+
+.timeline li {
+  padding: 2em 0;
+}
+
+.timeline .hexa{
+  width: 16px;
+  height: 10px;
+  position: absolute;
+  background: #00c4f3;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  margin-left:auto;
+  margin-right:auto;
+  top: -30px;
+  margin-top: 0;
+}
+
+.timeline .hexa:before {
+  border-bottom: 4px solid #00c4f3;
+  border-left-width: 8px;
+  border-right-width: 8px;
+  top: -4px;
+}
+
+.timeline .hexa:after {
+  border-left-width: 8px;
+  border-right-width: 8px;
+  border-top: 4px solid #00c4f3;
+  bottom: -4px;
+}
+
+.direction-l,
+.direction-r {
+  float: none;
+  width: 100%;
+  text-align: center;
+}
+
+.flag-wrapper {
+  text-align: center;
+  position: relative;
+}
+
+.flag {
+  position: relative;
+  display: inline;
+  background: rgb(255,255,255);
+  font-weight: 600;
+  z-index: 15;
+  padding: 6px 10px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.direction-l .flag:after,
+.direction-r .flag:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -15px;
+  height: 0;
+  width: 0;
+  margin-left: -8px;
+  border: solid transparent;
+  border-bottom-color: rgb(255,255,255);
+  border-width: 8px;
+  pointer-events: none;
+}
+
+.direction-l .flag {
+  -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  -moz-box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  box-shadow: -1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+}
+
+.direction-r .flag {
+  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  -moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.15), 0 0 1px rgba(0,0,0,0.15);
+}
+
+.time-wrapper {
+  display: block;
+  position: relative;
+  margin: 4px 0 0 0;
+  z-index: 14;
+  line-height: 1em;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.direction-l .time-wrapper {
+  float: none;
+}
+
+.direction-r .time-wrapper {
+  float: none;
+}
+
+.time {
+  background: #00c4f3;
+  display: inline-block;
+  padding: 8px;
+}
+
+.desc {
+  position: relative;
+  margin: 1em 0 0 0;
+  padding: 1em;
+  background: rgb(254,254,254);
+  -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.20);
+  -moz-box-shadow: 0 0 1px rgba(0,0,0,0.20);
+  box-shadow: 0 0 1px rgba(0,0,0,0.20);
+  z-index: 15;
+}
+
+.direction-l .desc,
+.direction-r .desc {
+  position: relative;
+  margin: 1em 1em 0 1em;
+  padding: 1em;
+  z-index: 15;
+}
+
+@media(min-width: 768px){
+  .timeline {
+    width: 660px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  .timeline li:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  
+  .timeline .hexa {
+    left: -28px;
+    right: auto;
+    top: 8px;
+  }
+
+  .timeline .direction-l .hexa {
+    left: auto;
+    right: -28px;
+  }
+
+  .direction-l {
+    position: relative;
+    width: 310px;
+    float: left;
+    text-align: right;
+  }
+
+  .direction-r {
+    position: relative;
+    width: 310px;
+    float: right;
+    text-align: left;
+  }
+
+  .flag-wrapper {
+    display: inline-block;
+  }
+  
+  .flag {
+    font-size: 18px;
+  }
+
+  .direction-l .flag:after {
+    left: auto;
+    right: -16px;
+    top: 50%;
+    margin-top: -8px;
+    border: solid transparent;
+    border-left-color: rgb(254,254,254);
+    border-width: 8px;
+  }
+
+  .direction-r .flag:after {
+    top: 50%;
+    margin-top: -8px;
+    border: solid transparent;
+    border-right-color: rgb(254,254,254);
+    border-width: 8px;
+    left: -8px;
+  }
+
+  .time-wrapper {
+    display: inline;
+    vertical-align: middle;
+    margin: 0;
+  }
+
+  .direction-l .time-wrapper {
+    float: left;
+  }
+
+  .direction-r .time-wrapper {
+    float: right;
+  }
+
+  .time {
+    padding: 5px 10px;
+  }
+
+  .direction-r .desc {
+    margin: 1em 0 0 0.75em;
+  }
+}
+
+@media(min-width: 992px){
+  .timeline {
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  .direction-l {
+    position: relative;
+    width: 380px;
+    float: left;
+    text-align: right;
+  }
+
+  .direction-r {
+    position: relative;
+    width: 380px;
+    float: right;
+    text-align: left;
+  }
+}
+
+  </style>
+
+</head>
+
+
+<body>
+<!-- partial:index.partial.html -->
+<header>
+    <h1>Linea del tiempo RESPONSIVA</h1>
+</header>
+
+<ul class="timeline">
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Phyton</span>
+        <span class="time-wrapper"><span class="time">1991</span></span>
+      </div>
+      <div class="desc">Python es un lenguaje de programación interpretado cuya filosofía enfatiza la legibilidad de su código.
+         Es un lenguaje de programación multi-aradigma, ya que admite en parte la  programación imperativa orientada a objetos y,
+          en menor medida, la programación funcional. Es un lenguaje interpretado, dinámico y diverso.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">PHP</span>
+        <span class="time-wrapper"><span class="time">1994</span></span>
+      </div>
+      <div class="desc">PHP es un lenguaje de programación de propósito general particularmente adecuado para el desarrollo web,
+         fue creado originalmente por el programador danés-canadiense Rasmus Lerdorf en 1994.
+        Actualmente, la implementación de PHP de referencia  es producida por  PHP Corporation. PHP originalmente significaba Personal Home,
+         pero ahora significa Recursive PHP Initialization 1: Hypertext Preprocessor.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Netscape</span>
+        <span class="time-wrapper"><span class="time">1994</span></span>
+      </div>
+      <div class="desc">Netscape Navigator es un navegador web, el primer producto comercial de  Netscape Communications, creado por Marc Andreessen (uno de los autores de Mosaic) mientras estaba en el Centro Nacional de Aplicaciones de Supercomputación (NCSA: Centro Nacional de Aplicaciones para Supercomputadoras) de la Universidad. de Illinois en Urbana-Champaign.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Apache</span>
+        <span class="time-wrapper"><span class="time">1995</span></span>
+      </div>
+      <div class="desc">Apache es el nombre de un grupo de países indígenas culturalmente cercanos al este de Arizona, el noroeste de México (estados del norte de Sonora, Chihuahua, Coahuila, Nuevo León y Tamaulipas), Nuevo México y partes de Texas y  las Grandes Llanuras. El término Apache probablemente proviene de apachu zuñi, que significa "enemigo"; de ahí el nombre que les dieron los españoles. Se llaman a sí mismos Diné, que significa "el pueblo". Hablan una colección de lenguas atabascas del sur, que se han clasificado en Plains Apache, East Apache y West Apache.
+      </div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Java</span>
+        <span class="time-wrapper"><span class="time">1995-2021</span></span>
+      </div>
+      <div class="desc">Java es un lenguaje de programación y una plataforma informática que fue comercializada por primera vez en 1995 por Sun Microsystems. Hay muchas aplicaciones y sitios web que no funcionarán, probablemente, a menos que tengan Java instalado, y cada día se crean más. Java es rápido, seguro y fiable. Desde ordenadores portátiles hasta centros de datos, desde consolas para juegos hasta computadoras avanzadas, desde teléfonos móviles hasta Internet, Java está en todas partes. Si es ejecutado en una plataforma no tiene que ser recompilado para correr en otra. A partir de 2012, Java es uno de los lenguajes de programación más utilizados, especialmente para aplicaciones web cliente-servidor, con alrededor de  diez millones de usuarios reportados.</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Opera</span>
+        <span class="time-wrapper"><span class="time">1995</span></span>
+      </div>
+      <div class="desc">Opera es un navegador web creado por la empresa noruega Opera Software. Usa el motor de renderizado Blink. Tiene versiones para computadoras de escritorio, teléfonos móviles y tabletas.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">La guerra de los navegadores</span>
+        <span class="time-wrapper"><span class="time">1995-200</span></span>
+      </div>
+      <div class="desc"> Browser Wars es el nombre común que se le da a la competencia entre los navegadores web por el dominio del mercado. Específicamente, el término se refiere a la lucha que ha tenido lugar entre Microsoft, con el navegador Internet Explorer y Netscape, con Netscape Navigator, para dominar el mercado de los navegadores web (especialmente en la plataforma Windows)  en las últimas décadas. ninguna otra empresa ofrece una competencia significativa en el mercado. Actualmente, esta expresión se ha utilizado para referirse a la competencia entre los navegadores más utilizados en la actualidad como Mozilla Firefox, Microsoft Edge, Opera, Safari y liderados por  Google Chrome. Por el momento es difícil hablar de guerra porque la competencia no es tan feroz, de hecho, incluso el equipo de Internet Explorer felicitó al equipo de Firefox enviándole pastel por el lanzamiento de Firefox 2 y las versiones 3 y 4
+        </div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">internet explorer</span>
+        <span class="time-wrapper"><span class="time">1995</span></span>
+      </div>
+      <div class="desc">Internet Explorer (anteriormente Microsoft Internet Explorer y Windows Internet Explorer,​ usualmente abreviado a IE) es una serie de navegadores web gráficos desarrollado por Microsoft para el sistema operativo Microsoft Windows desde 1995. Se lanzó por primera vez como parte del paquete complementario Plus! para Windows 95 ese año.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">MySQL</span>
+        <span class="time-wrapper"><span class="time">1995</span></span>
+      </div>
+      <div class="desc">MySQL es un sistema de gestión de bases de datos relacional desarrollado bajo licencia dual: Licencia pública general/Licencia comercial por Oracle Corporation y está considerada como la base de datos de código abierto más popular del mundo, y una de las más populares en general junto a Oracle y Microsoft SQL Server, todo para entornos de desarrollo web.</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">EcmaSCRIPT</span>
+        <span class="time-wrapper"><span class="time">1997</span></span>
+      </div>
+      <div class="desc">ECMAScript es una especificación de lenguaje de programación publicada por ECMA International. El desarrollo empezó en 1996 y estuvo basado en el popular lenguaje JavaScript propuesto como estándar por Netscape Communications Corporation. Actualmente está aceptado como el estándar ISO/IEC 22275:2018.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">PhpMyAdmin</span>
+        <span class="time-wrapper"><span class="time">1998</span></span>
+      </div>
+      <div class="desc">phpMyAdmin es una herramienta escrita en PHP con la intención de manejar la administración de MySQL a través de páginas web, utilizando un navegador web. Actualmente puede crear y eliminar bases de datos, crear, eliminar y alterar tablas, borrar, editar y añadir campos, ejecutar cualquier sentencia SQL, administrar claves en campos, administrar privilegios, exportar datos en varios formatos y está disponible en 72 idiomas. Se encuentra disponible bajo la licencia GPL Versión 2.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Tomcat</span>
+        <span class="time-wrapper"><span class="time">1999</span></span>
+      </div>
+      <div class="desc">Apache Tomcat (también llamado Jakarta Tomcat o simplemente Tomcat) funciona como un contenedor de servlets desarrollado bajo el proyecto Jakarta en la Apache Software Foundation. Tomcat implementa las especificaciones de los servlets y de JavaServer Pages (JSP) de Oracle Corporation (aunque creado por Sun Microsystems).</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Apache Ant</span>
+        <span class="time-wrapper"><span class="time">2000</span></span>
+      </div>
+      <div class="desc">Apache Ant es una herramienta usada en programación para la realización de tareas mecánicas y repetitivas, normalmente durante la fase de compilación y construcción (build). Es, por tanto, un software para procesos de automatización de compilación, similar a Make pero desarrollado en lenguaje Java y requiere la plataforma Java, así que es más apropiado para la construcción de proyectos Java.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Struts</span>
+        <span class="time-wrapper"><span class="time">2000</span></span>
+      </div>
+      <div class="desc">Struts es una herramienta de soporte para el desarrollo de aplicaciones Web del patrón MVC bajo la plataforma Java EE (Java Enterprise Edition). Struts se desarrollaba como parte del proyecto Jakarta de la Apache Software Foundation, pero actualmente es un proyecto conocido como Apache Struts.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Hibernate</span>
+        <span class="time-wrapper"><span class="time">2001</span></span>
+      </div>
+      <div class="desc">Hibernate es una herramienta de mapeo objeto-relacional (ORM) para la plataforma Java (y disponible también para .Net con el nombre de NHibernate) que facilita el mapeo de atributos entre una base de datos relacional tradicional y el modelo de objetos de una aplicación, mediante archivos declarativos (XML) o anotaciones en los beans de las entidades que permiten establecer estas relaciones.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Eclipse</span>
+        <span class="time-wrapper"><span class="time">2001</span></span>
+      </div>
+      <div class="desc">Eclipse es una plataforma de software compuesto por un conjunto de herramientas de programación de código abierto multiplataforma para desarrollar lo que el proyecto llama "Aplicaciones de Cliente Enriquecido", opuesto a las aplicaciones "Cliente-liviano" basadas en navegadores. Esta plataforma, típicamente ha sido usada para desarrollar entornos de desarrollo integrados (del inglés IDE), como el IDE de Java llamado Java Development Toolkit (JDT) y el compilador (ECJ) que se entrega como parte de Eclipse (y que son usados también para desarrollar el mismo Eclipse).</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">IntelliJ</span>
+        <span class="time-wrapper"><span class="time">2001</span></span>
+      </div>
+      <div class="desc">IntelliJ IDEA es un entorno de desarrollo integrado (IDE) para el desarrollo de programas informáticos. Es desarrollado por JetBrains (anteriormente conocido como IntelliJ), y está disponible en dos ediciones: edición para la comunidad​ y edición comercial.</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Firefox</span>
+        <span class="time-wrapper"><span class="time">2002</span></span>
+      </div>
+      <div class="desc">Mozilla Firefox (o simplemente Firefox) es un navegador web libre y de código abierto desarrollado para distintas plataformas, está coordinado por la Corporación Mozilla y la Fundación Mozilla. Usa el motor Gecko para renderizar páginas web, el cual implementa actuales y futuros estándares web.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Spring boot</span>
+        <span class="time-wrapper"><span class="time">2002</span></span>
+      </div>
+      <div class="desc">Spring Boot es una infraestructura ligera que elimina la mayor parte del trabajo de configurar las aplicaciones basadas en Spring</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Spring</span>
+        <span class="time-wrapper"><span class="time">2003</span></span>
+      </div>
+      <div class="desc">Spring es un framework para el desarrollo de aplicaciones y contenedor de inversión de control, de código abierto para la plataforma Java.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Safari</span>
+        <span class="time-wrapper"><span class="time">2003</span></span>
+      </div>
+      <div class="desc">Safari es un navegador web de código cerrado desarrollado por Apple Inc. Está disponible para macOS, iPadOS e iOS, y de 2007 a 2012, estaba disponible para Windows</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Spring Security</span>
+        <span class="time-wrapper"><span class="time">2004</span></span>
+      </div>
+      <div class="desc">Spring Security es un marco Java / Java EE que proporciona autenticación , autorización y otras características de seguridad para aplicaciones empresariales. El proyecto se inició a finales de 2003 como 'Acegi Security'</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Maven</span>
+        <span class="time-wrapper"><span class="time">2004</span></span>
+      </div>
+      <div class="desc">Maven es una herramienta de software para la gestión y construcción de proyectos Java creada por Jason van Zyl, de Sonatype, en 2002. Es similar en funcionalidad a Apache Ant (y en menor medida a PEAR de PHP y CPAN de Perl), pero tiene un modelo de configuración de construcción más simple, basado en un formato XML. Estuvo integrado inicialmente dentro del proyecto Jakarta pero ahora ya es un proyecto de nivel superior de la Apache Software Foundation.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Django</span>
+        <span class="time-wrapper"><span class="time">2005</span></span>
+      </div>
+      <div class="desc">Django es un framework web de alto nivel que permite el desarrollo rápido de sitios web seguros y mantenibles.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Git</span>
+        <span class="time-wrapper"><span class="time">2005</span></span>
+      </div>
+      <div class="desc">Git es un software de control de versiones diseñado por Linus Torvalds, pensando en la eficiencia, la confiabilidad y compatibilidad del mantenimiento de versiones de aplicaciones cuando estas tienen un gran número de archivos de código fuente. Su propósito es llevar registro de los cambios en archivos de computadora incluyendo coordinar el trabajo que varias personas realizan sobre archivos compartidos en un repositorio de código.</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Liquibase</span>
+        <span class="time-wrapper"><span class="time">2006</span></span>
+      </div>
+      <div class="desc">Liquibase es una biblioteca independiente de la base de datos de código abierto para rastrear, administrar y aplicar cambios en el esquema de la base de datos. Se inició en 2006 para permitir un seguimiento más fácil de los cambios de la base de datos, especialmente en un entorno de desarrollo de software ágil .</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">jQuery</span>
+        <span class="time-wrapper"><span class="time">2006</span></span>
+      </div>
+      <div class="desc">jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.1​ Fue presentada el 14 de enero de 2006 en el BarCamp NYC. De acuerdo a un análisis de la Web (realizado en 2017) JQuery es la biblioteca de JavaScript más utilizada, por un amplio margen.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">JPA</span>
+        <span class="time-wrapper"><span class="time">2006</span></span>
+      </div>
+      <div class="desc">Java Persistence API (JPA) es un framework que forma parte de Java, y ofrece un conjunto de interfaces y APIs para resolver el problema del almacenamiento de los objetos en una base de datos relacional.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Chrome</span>
+        <span class="time-wrapper"><span class="time">2008</span></span>
+      </div>
+      <div class="desc">Google Chrome es un navegador web de código cerrado​​ desarrollado por Google, aunque derivado de proyectos de código abierto.​​​ Está disponible gratuitamente. El nombre del navegador deriva del término en inglés usado para el marco de la interfaz gráfica de usuario.</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Gson</span>
+        <span class="time-wrapper"><span class="time">2008</span></span>
+      </div>
+      <div class="desc">Gson es una biblioteca de código abierto para el lenguaje de programación Java que permite la serialización y deserialización entre objetos Java y su representación en notación JSON.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">V8</span>
+        <span class="time-wrapper"><span class="time">2008</span></span>
+      </div>
+      <div class="desc">V8 es un motor de código abierto para JavaScript y WebAssembly, creado por Google, siendo su programador jefe Lars Bak.​La primera versión del motor V8 fue lanzada el 2 de septiembre de 2008 al mismo tiempo que la primera versión del navegador Google Chrome.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">GitHub</span>
+        <span class="time-wrapper"><span class="time">2008</span></span>
+      </div>
+      <div class="desc">GitHub es una forja para alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de ordenador. El software que opera GitHub fue escrito en Ruby on Rails. Desde enero de 2010, GitHub opera bajo el nombre de GitHub, Inc.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Graddle</span>
+        <span class="time-wrapper"><span class="time">2008</span></span>
+      </div>
+      <div class="desc">Gradle es un sistema de automatización de construcción de código de software que construye sobre los conceptos de Apache Ant y Apache Maven e introduce un lenguaje específico del dominio basado en Groovy en vez de la forma XML utilizada por Apache Maven para declarar la configuración de proyecto.​</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Underscore.js</span>
+        <span class="time-wrapper"><span class="time">2009</span></span>
+      </div>
+      <div class="desc">Traducción del inglés-Underscore.js es una biblioteca de JavaScript que proporciona funciones de utilidad para tareas de programación comunes. Es comparable a las características proporcionadas por Prototype.js y el lenguaje Ruby, pero opta por un diseño de programación funcional en lugar de extender prototipos de objetos.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Node.js</span>
+        <span class="time-wrapper"><span class="time">2009</span></span>
+      </div>
+      <div class="desc">Node.js es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor basado en el lenguaje de programación JavaScript, asíncrono, con E/S de datos en una arquitectura orientada a eventos y basado en el motor V8 de Google.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Spring Roo</span>
+        <span class="time-wrapper"><span class="time">2009</span></span>
+      </div>
+      <div class="desc">Traducción del inglés-Spring Roo es una herramienta de software de código abierto que utiliza principios de convención sobre configuración para proporcionar un rápido desarrollo de aplicaciones de software empresarial basado en Java.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Backbone</span>
+        <span class="time-wrapper"><span class="time">2010</span></span>
+      </div>
+      <div class="desc">Backbone es una herramienta de desarrollo/API para el lenguaje de programación Javascript con un interfaz RESTful por JSON, basada en el paradigma de diseño de aplicaciones Modelo Vista Controlador.</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">AngularJS</span>
+        <span class="time-wrapper"><span class="time">2010</span></span>
+      </div>
+      <div class="desc">AngularJS, es un framework de JavaScript de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Express.js</span>
+        <span class="time-wrapper"><span class="time">2010</span></span>
+      </div>
+      <div class="desc">Traducción del inglés-Express.js, o simplemente Express, es un marco de aplicación web de back-end para Node.js, lanzado como software gratuito y de código abierto bajo la licencia MIT. Está diseñado para crear aplicaciones web y API. Se le ha llamado el marco de servidor estándar de facto para Node.js.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Laravel</span>
+        <span class="time-wrapper"><span class="time">2011</span></span>
+      </div>
+      <div class="desc">Laravel es un framework de código abierto para desarrollar aplicaciones y servicios web con PHP 5, PHP 7 y PHP 8. Su filosofía es desarrollar código PHP de forma elegante y simple, evitando el "código espagueti". Fue creado en 2011 y tiene una gran influencia de frameworks como Ruby on Rails, Sinatra y ASP.NET MVC.​</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">RxJS</span>
+        <span class="time-wrapper"><span class="time">2011</span></span>
+      </div>
+      <div class="desc">RxJS es una librería Javascript de programación reactiva que facilita la composición de código asíncrono basado en secuencias de observables. Esto lo hace gracias a tres patrones de diseño que veremos más adelante. El patrón Observer, el patrón Iterador y la programación funcional.</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">TypeScript</span>
+        <span class="time-wrapper"><span class="time">2012</span></span>
+      </div>
+      <div class="desc">TypeScript es un lenguaje de programación libre y de código abierto desarrollado y mantenido por Microsoft. Es un superconjunto de JavaScript, que esencialmente añade tipos estáticos y objetos basados en clases.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Phalcon</span>
+        <span class="time-wrapper"><span class="time">2012</span></span>
+      </div>
+      <div class="desc">Traducción del inglés-Phalcon es un marco web PHP basado en el patrón modelo-vista-controlador. Lanzado originalmente en 2012, es un marco de código abierto con licencia bajo los términos de la Licencia BSD.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Travis CI</span>
+        <span class="time-wrapper"><span class="time">2012</span></span>
+      </div>
+      <div class="desc">Traducción del inglés-Travis CI es un servicio de integración continua alojado que se utiliza para crear y probar proyectos de software alojados en GitHub y Bitbucket. Travis CI fue el primer servicio de CI que brindó servicios a proyectos de código abierto de forma gratuita y continúa haciéndolo.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">React</span>
+        <span class="time-wrapper"><span class="time">2013</span></span>
+      </div>
+      <div class="desc">React es una biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página. Es mantenido por Facebook y la comunidad de software libre. En el proyecto hay más de mil desarrolladores libres.</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Flux</span>
+        <span class="time-wrapper"><span class="time">2013</span></span>
+      </div>
+      <div class="desc">A fin de cuentas, Flux es un patrón ideado por Facebook para usar en aplicaciones con React y la influencia entre uno y otro es clara. De hecho, a eso en React se le llama componentes funcionales sin estado (por aquello de que no usan su state mutable) y desde la versión 0.14 son una realidad.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">JHipster</span>
+        <span class="time-wrapper"><span class="time">2013</span></span>
+      </div>
+      <div class="desc">Traducción del inglés-JHipster es un generador de aplicaciones gratuito y de código abierto que se utiliza para desarrollar rápidamente aplicaciones web modernas y microservicios utilizando Angular o React y Spring Framework.</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">SonarQube</span>
+        <span class="time-wrapper"><span class="time">2013</span></span>
+      </div>
+      <div class="desc">SonarQube es una plataforma para evaluar código fuente. Es software libre y usa diversas herramientas de análisis estático de código fuente como Checkstyle, PMD o FindBugs para obtener métricas que pueden ayudar a mejorar la calidad del código de un programa.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Docker</span>
+        <span class="time-wrapper"><span class="time">2013</span></span>
+      </div>
+      <div class="desc">Docker es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.​</div>
+    </div>
+  </li>
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Npm</span>
+        <span class="time-wrapper"><span class="time">2014</span></span>
+      </div>
+      <div class="desc">Npm es el sistema de gestión de paquetes por defecto para Node.js, un entorno de ejecución para JavaScript, bajo Artistic License 2.0.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Vue.js</span>
+        <span class="time-wrapper"><span class="time">2014</span></span>
+      </div>
+      <div class="desc">Vue.js es un framework de JavaScript de código abierto para la construcción de interfaces de usuario y aplicaciones de una sola página. Fue creado por Evan You, y es mantenido por él y por el resto de los miembros activos del equipo central que provienen de diversas empresas como Netlify y Netguru.​</div>
+    </div>
+  </li>
+
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Microsoft Edge</span>
+        <span class="time-wrapper"><span class="time">2015</span></span>
+      </div>
+      <div class="desc">Microsoft Edge es un navegador web desarrollado por Microsoft, basado en Chromium. Fue lanzado por primera vez para Windows 10 y Xbox One en julio de 2015, luego para Android y iOS en octubre de 2017, ​​ para macOS en mayo de 2019, en Windows 7, 8 y 8.1 en enero de 2020 y para Linux en octubre de 2020.​</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Redux</span>
+        <span class="time-wrapper"><span class="time">2015</span></span>
+      </div>
+      <div class="desc">Redux es una librería JavaScript de código abierto para el manejo del estado de las aplicaciones. Es comúnmente usada con otras librerías como React o Angular para la construcción de Interfaces de Usuario. Dan Abramov y Andrew Clark se inspiraron en otra librería de Facebook, Flux ​ para crear Redux.</div>
+    </div>
+  </li>
+  
+  <li>
+    <div class="direction-l">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Visual Studio Code</span>
+        <span class="time-wrapper"><span class="time">2015</span></span>
+      </div>
+      <div class="desc">Visual Studio Code es un editor de código fuente desarrollado por Microsoft para Windows, Linux y macOS. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código.</div>
+    </div>
+  </li>
+
+
+  <li>
+    <div class="direction-r">
+      <div class="flag-wrapper">
+        <span class="hexa"></span>
+        <span class="flag">Angular</span>
+        <span class="time-wrapper"><span class="time">2016</span></span>
+      </div>
+      <div class="desc">Angular es un framework para aplicaciones web desarrollado en TypeScript, de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página.</div>
+    </div>
+  </li>
+  
+</ul>
+<!-- partial -->
+  
+</body>
+</html>
