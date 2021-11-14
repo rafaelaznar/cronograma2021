@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>LINEA DEL TIEMPO</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Cardo|Pathway+Gothic+One");
+
+    .timeline {
+      display: flex;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      flex-direction: column;
+      max-width: 700px;
+      position: relative;
+    }
+
+    .timeline__content-title {
+      font-weight: normal;
+      font-size: 66px;
+      margin: -10px 0 0 0;
+      transition: 0.4s;
+      padding: 0 10px;
+      box-sizing: border-box;
+      font-family: "Pathway Gothic One", sans-serif;
+      color: #fff;
+    }
+
+    .timeline__content-desc {
+      margin: 0;
+      font-size: 15px;
+      box-sizing: border-box;
+      color: rgba(255, 255, 255, 0.7);
+      font-family: Cardo;
+      font-weight: normal;
+      line-height: 25px;
+      text-align: justify;
+    }
+
+    .timeline:before {
+      position: absolute;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      margin-left: -1px;
+      content: "";
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    @media only screen and (max-width: 767px) {
+      .timeline:before {
+        left: 40px;
+      }
+    }
+
+    .timeline-item {
+      padding: 40px 0;
+      opacity: 0.3;
+      filter: blur(2px);
+      transition: 0.5s;
+      box-sizing: border-box;
+      width: calc(50% - 40px);
+      display: flex;
+      position: relative;
+      transform: translateY(-80px);
+    }
+
+    .timeline-item:before {
+      content: attr(data-text);
+      letter-spacing: 3px;
+      width: 100%;
+      position: absolute;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 13px;
+      font-family: "Pathway Gothic One", sans-serif;
+      border-left: 2px solid rgba(255, 255, 255, 0.5);
+      top: 70%;
+      margin-top: -5px;
+      padding-left: 15px;
+      opacity: 0;
+      right: calc(-100% - 56px);
+    }
+
+    .timeline-item:nth-child(even) {
+      align-self: flex-end;
+    }
+
+    .timeline-item:nth-child(even):before {
+      right: auto;
+      text-align: right;
+      left: calc(-100% - 56px);
+      padding-left: 0;
+      border-left: none;
+      border-right: 2px solid rgba(255, 255, 255, 0.5);
+      padding-right: 15px;
+    }
+
+    .timeline-item--active {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+
+    .timeline-item--active:before {
+      top: 50%;
+      transition: 0.3s all 0.2s;
+      opacity: 1;
+    }
+
+    .timeline-item--active .timeline__content-title {
+      margin: -50px 0 20px 0;
+    }
+
+    @media only screen and (max-width: 767px) {
+      .timeline-item {
+        align-self: baseline !important;
+        width: 100%;
+        padding: 0 30px 150px 80px;
+      }
+
+      .timeline-item:before {
+        left: 10px !important;
+        padding: 0 !important;
+        top: 50px;
+        text-align: center !important;
+        width: 60px;
+        border: none !important;
+      }
+
+      .timeline-item:last-child {
+        padding-bottom: 40px;
+      }
+    }
+
+    .timeline__img {
+      max-width: 100%;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .timeline-container {
+      width: 100%;
+      position: relative;
+      padding: 80px 0;
+      transition: 0.3s ease 0s;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .timeline-container:before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(99, 99, 99, 0.8);
+      content: "";
+    }
+
+    .timeline-header {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 80px;
+      position: relative;
+    }
+
+    .timeline-header__title {
+      color: #fff;
+      font-size: 46px;
+      font-family: Cardo;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .timeline-header__subtitle {
+      color: rgba(255, 255, 255, 0.5);
+      font-family: "Pathway Gothic One", sans-serif;
+      font-size: 16px;
+      letter-spacing: 5px;
+      margin: 10px 0 0 0;
+      font-weight: normal;
+    }
+
+    .demo-footer {
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .demo-footer a {
+      color: #999;
+      display: inline-block;
+      font-family: Cardo;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="timeline-container" id="timeline-1">
+    <div class="timeline-header">
+      <h2 class="timeline-header__title">Linea del tiempo</h2>
+      <h3 class="timeline-header__subtitle">SERVIDOR/CLIENTE</h3>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item" data-text="PYTHON">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://i.blogs.es/1d8a5b/python1/1366_521.jpg" />
+          <h2 class="timeline__content-title">1991</h2>
+          <p class="timeline__content-desc">Python es un lenguaje de programación interpretado cuya filosofía hace
+            hincapié en la legibilidad de su código.​ Se trata de un lenguaje de programación multiparadigma, ya que
+            soporta parcialmente la orientación a objetos, programación imperativa y, en menor medida, programación
+            funcional. </p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-text="MYSQL">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.redeszone.net/app/uploads-redeszone.net/2017/02/mysql.png" />
+          <h2 class="timeline__content-title">1994</h2>
+          <p class="timeline__content-desc">MySQL es un sistema de gestión de bases de datos relacional desarrollado
+            bajo licencia dual: Licencia pública general/Licencia comercial por Oracle Corporation y está considerada
+            como la base de datos de código abierto más popular del mundo,​ y una de las más populares en general junto
+            a Oracle y Microsoft SQL Server, todo para entornos de desarrollo web.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="APACHE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://i2.wp.com/unaaldia.hispasec.com/wp-content/uploads/2021/10/Apache-HTTP-Server.png?fit=1200%2C800&ssl=1&w=640" />
+          <h2 class="timeline__content-title">1995</h2>
+          <p class="timeline__content-desc">El servidor HTTP Apache es un servidor web HTTP de código abierto, para
+            plataformas Unix (BSD, GNU/Linux, etc.), Microsoft Windows, Macintosh y otras, que implementa el protocolo
+            HTTP/1.1 ,en 1995 se basó inicialmente en código del popular NCSA HTTPd 1.3, pero más tarde fue reescrito
+            por completo</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="JAVA">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://blog.codmind.com/content/images/2021/01/banner-12.jpg" />
+          <h2 class="timeline__content-title">1995-2021</h2>
+          <p class="timeline__content-desc">Java es un lenguaje de programación y una plataforma informática que fue
+            comercializada por primera vez en 1995 por Sun Microsystems. Hay muchas aplicaciones y sitios web que no
+            funcionarán, probablemente, a menos que tengan Java instalado, y cada día se crean más. Java es rápido,
+            seguro y fiable. Desde ordenadores portátiles hasta centros de datos, desde consolas para juegos hasta
+            computadoras avanzadas, desde teléfonos móviles hasta Internet, Java está en todas partes.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="GUERRA DE LOS NAVEGADORES">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://i.emezeta.com/weblog/guerra-de-navegadores/browser-wars.jpg" />
+          <h2 class="timeline__content-title">1995-2000</h2>
+          <p class="timeline__content-desc">La guerra de navegadores es el nombre popular dado a la competencia entre
+            los navegadores web por el dominio del mercado. Específicamente el término se refiere a la lucha que hubo
+            entre Microsoft, con su navegador Internet Explorer, y Netscape, con Netscape Navigator, por la dominación
+            del mercado de navegadores web (particularmente en la plataforma Windows) durante finales de los años 1990,
+            ya que en esa época ninguna otra compañía ofrecía una competencia considerable en el mercado. </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="INTERNET EXPLORER">
+        <div class="timeline__content"><img class="timeline__img"
+            src="http://www.icorp.com.mx/blog/wp-content/uploads/2020/08/internet-explorer-2156-1120.jpg" />
+          <h2 class="timeline__content-title">1995</h2>
+          <p class="timeline__content-desc">Internet Explorer es una serie de navegadores web gráficos desarrollado por
+            Microsoft para el sistema operativo Microsoft Windows desde 1995. Se lanzó por primera vez como parte del
+            paquete complementario Plus! para Windows 95 ese año.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="NETSCAPE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjFTEKbviJvOoq7_V2Hk__bDcW8UyFnBfyZQ&usqp=CAU" />
+          <h2 class="timeline__content-title">1995</h2>
+          <p class="timeline__content-desc">Netscape Navigator fue un navegador web, el primer producto comercial de la
+            compañía Netscape Communications creada por Marc Andreessen (uno de los autores de Mosaic).
+            Netscape fue el primer navegador comercial.
+            El navegador original fue en su día el dominante en términos de cuota de uso, pero como resultado de la
+            primera guerra de navegadores, perdió prácticamente toda su cuota en favor de Internet Explorer
+            En marzo de 1997, Netscape liberó la mayoría del código de Netscape Communicator y lo puso bajo la licencia
+            libre. El proyecto se llamó Mozilla.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="OPERA">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.silicon.es/wp-content/uploads/2016/07/opera-software.png" />
+          <h2 class="timeline__content-title">1995</h2>
+          <p class="timeline__content-desc">
+            Opera es un navegador web creado por la empresa noruega Opera Software. Usa el motor de renderizado Blink.​
+            Tiene versiones para computadoras de escritorio, teléfonos móviles y tabletas.
+            El navegador comenzó en 1995 como un proyecto de investigación en Telenor, una empresa de telecomunicaciones
+            noruega. En 1995, la empresa se ramificó y quedó en manos de Opera Software.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="PHP">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://kinsta.com/es/wp-content/uploads/sites/8/2018/05/qu%C3%A9-es-php-1-1024x512.png" />
+          <h2 class="timeline__content-title">1995</h2>
+          <p class="timeline__content-desc">PHP es un lenguaje de programación de uso general que se adapta
+            especialmente al desarrollo web.​ Fue creado inicialmente por el programador danés-canadiense Rasmus Lerdorf
+            en 1994.​ En la actualidad, la implementación de referencia de PHP es producida por The PHP Group.​</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="ECMAScript versiones">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://babel.es/WebBabel/media/BlogImages/2B4.jpg" />
+          <h2 class="timeline__content-title">1997</h2>
+          <p class="timeline__content-desc">
+            ECMAScript es una especificación de lenguaje de programación publicada por ECMA International. El desarrollo
+            empezó en 1996 y estuvo basado en el popular lenguaje JavaScript propuesto como estándar por Netscape
+            Communications Corporation.
+            ECMAScript define un lenguaje de tipos dinámicos ligeramente inspirado en Java y otros lenguajes del estilo
+            de C. Soporta algunas características de la programación orientada a objetos mediante objetos basados en
+            prototipos y pseudoclases.
+            Desde el lanzamiento en junio de 1997 del estándar ECMAScript 1, han existido las versiones 2, 3 y 5, que es
+            la más usada actualmente (la 4 se abandonó2​). En junio de 2015 se cerró y publicó la versión ECMAScript 6
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-text="PHP MY ADMIN">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.coriaweb.hosting/wp-content/uploads/2016/06/logo-og.png" />
+          <h2 class="timeline__content-title">1998</h2>
+          <p class="timeline__content-desc">phpMyAdmin es una herramienta escrita en PHP con la intención de manejar la
+            administración de MySQL a través de páginas web, utilizando un navegador web.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="TOMCAT">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://linuxiac.com/wp-content/uploads/2021/07/apache-with-tomcat.png" />
+          <h2 class="timeline__content-title">1999</h2>
+          <p class="timeline__content-desc">Apache Tomcat funciona como un contenedor de servlets desarrollado bajo el
+            proyecto Jakarta en la Apache Software Foundation. Tomcat implementa las especificaciones de los servlets y
+            de JavaServer Pages de Oracle Corporation.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="Apache Ant">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://forcetalks.s3.amazonaws.com/wp-content/uploads/2016/05/25085252/APACHE-ANT-SCRIPT.jpg" />
+          <h2 class="timeline__content-title">2000</h2>
+          <p class="timeline__content-desc">Apache Ant es una herramienta usada en programación para la realización de
+            tareas mecánicas y repetitivas, normalmente durante la fase de compilación y construcción (build). Es, por
+            tanto, un software para procesos de automatización de compilación, similar a Make pero desarrollado en
+            lenguaje Java y requiere la plataforma Java, así que es más apropiado para la construcción de proyectos
+            Java.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="STRUTS">
+        <div class="timeline__content"><img class="timeline__img"
+            src="http://ciberseguretat.gencat.cat/web/.content/Imatge/Imatges_avisos/apache-struts-twitter-card.png" />
+          <h2 class="timeline__content-title">2000</h2>
+          <p class="timeline__content-desc">Struts es una herramienta de soporte para el desarrollo de aplicaciones Web
+            del patrón MVC bajo la plataforma Java EE (Java Enterprise Edition). Struts se desarrollaba como parte del
+            proyecto Jakarta de la Apache Software Foundation, pero actualmente es un proyecto conocido como Apache
+            Struts.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="ECLIPSE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://e7.pngegg.com/pngimages/826/335/png-clipart-eclipse-logo-integrated-development-environment-programming-language-computer-software-framework-purple-text.png" />
+          <h2 class="timeline__content-title" style="color: black;">2001</h2>
+          <p class="timeline__content-desc">Eclipse es una plataforma de software compuesto por un conjunto de
+            herramientas de programación de código abierto multiplataforma para desarrollar lo que el proyecto llama
+            "Aplicaciones de Cliente Enriquecido", opuesto a las aplicaciones "Cliente-liviano" basadas en navegadores.
+            Esta plataforma, típicamente ha sido usada para desarrollar entornos de desarrollo integrados (del inglés
+            IDE), como el IDE de Java llamado Java Development Toolkit (JDT) y el compilador (ECJ) que se entrega como
+            parte de Eclipse (y que son usados también para desarrollar el mismo Eclipse).</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="INTELLIJ">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/1024px-IntelliJ_IDEA_Icon.svg.png" />
+          <h2 class="timeline__content-title">2001</h2>
+          <p class="timeline__content-desc">IntelliJ IDEA es un entorno de desarrollo integrado para el desarrollo de
+            programas informáticos. Es desarrollado por JetBrains, y está disponible en dos ediciones: edición para la
+            comunidad​ y edición comercial.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="HIBERNATE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://upload.wikimedia.org/wikipedia/commons/2/22/Hibernate_logo_a.png" />
+          <h2 class="timeline__content-title">2001</h2>
+          <p class="timeline__content-desc">Hibernate es una herramienta de mapeo objeto-relacional (ORM) para la
+            plataforma Java (y disponible también para .Net con el nombre de NHibernate) que facilita el mapeo de
+            atributos entre una base de datos relacional tradicional y el modelo de objetos de una aplicación, mediante
+            archivos declarativos (XML) o anotaciones en los beans de las entidades que permiten establecer estas
+            relaciones.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="MAVEN">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://marvel-b1-cdn.bc0a.com/f00000000156946/www.jrebel.com/sites/rebel/files/image/2020-07/image-blog-what-is-maven.jpg" />
+          <h2 class="timeline__content-title">2002</h2>
+          <p class="timeline__content-desc">Maven es una herramienta de software para la gestión y construcción de
+            proyectos Java creada por Jason van Zyl, de Sonatype, en 2002. Es similar en funcionalidad a Apache Ant (y
+            en menor medida a PEAR de PHP y CPAN de Perl), pero tiene un modelo de configuración de construcción más
+            simple, basado en un formato XML. Estuvo integrado inicialmente dentro del proyecto Jakarta pero ahora ya es
+            un proyecto de nivel superior de la Apache Software Foundation</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="SPRING">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://programaenlinea.net/wp-content/uploads/2016/06/spring-logo.png" />
+          <h2 class="timeline__content-title">2002</h2>
+          <p class="timeline__content-desc">Spring es un framework para el desarrollo de aplicaciones y contenedor de
+            inversión de control, de código abierto para la plataforma Java</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="SPRING BOOT">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://miro.medium.com/max/1400/1*o5FmjKTPdJTbhGE2MIjo6w.jpeg" />
+          <h2 class="timeline__content-title">2002</h2>
+          <p class="timeline__content-desc">Spring Boot es la solución de Spring Boot-over-configuration para crear
+            aplicaciones independientes basadas en Spring de grado de producción que puede "simplemente ejecutar". Está
+            preconfigurado con la "opinión obstinada" del equipo de Spring de la mejor configuración y uso de la
+            plataforma Spring y bibliotecas de terceros para que pueda comenzar con el mínimo esfuerzo. La mayoría de
+            las aplicaciones de Spring Boot necesitan muy poca configuración de Spring.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="SPRING SECURITY">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.zero2hero.training/wp-content/uploads/2020/02/springsecurity.png" />
+          <h2 class="timeline__content-title">2003</h2>
+          <p class="timeline__content-desc">Spring Security es un marco Java / Java EE que proporciona autenticación,
+            autorización y otras características de seguridad para aplicaciones empresariales. El proyecto se inició a
+            fines de 2003 como 'Acegi Security' por Ben Alex, y se lanzó públicamente bajo la Licencia Apache en marzo
+            de 2004.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="SAFARI">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://s1.eestatic.com/2017/04/07/actualidad/actualidad_206742178_129840067_1024x576.jpg" />
+          <h2 class="timeline__content-title">2003</h2>
+          <p class="timeline__content-desc">Safari es un navegador web de código cerrado desarrollado por Apple Inc.
+            Está disponible para macOS, iPadOS e iOS, y de 2007 a 2012, estaba disponible para Windows
+            Antes del lanzamiento de Safari, Apple incluía el navegador Internet Explorer para Mac de Microsoft a sus
+            ordenadores como navegador predeterminado.
+            La primera versión beta de Safari fue presentada en la exposición Macworld el 7 de enero de 2003 y fue
+            liberada en forma de beta pública. Su versión 1.0 se lanzó en junio de 2003. La versión 1.1 se publicó en
+            octubre del mismo año y se convirtió en la primera versión de Safari en ser el navegador predeterminado para
+            Mac OS X.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="FIREFOX">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2019/03/Firefox.jpg" />
+          <h2 class="timeline__content-title">2004</h2>
+          <p class="timeline__content-desc">Mozilla Firefox (o simplemente Firefox) es un navegador web libre y de
+            código abierto desarrollado para distintas plataformas, está coordinado por la Corporación Mozilla y la
+            Fundación Mozilla. Usa el motor Gecko para renderizar páginas web, el cual implementa actuales y futuros
+            estándares web. </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="DJANGO">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.codigojs.com/media/thumbs/articles/2020/03/08/1_HVKOLLX7wprRbHTl2IPDcQ.png.800x600_q90.jpg" />
+          <h2 class="timeline__content-title">2005</h2>
+          <p class="timeline__content-desc">Django es un framework de desarrollo web de código abierto, escrito en
+            Python, que respeta el patrón de diseño conocido como modelo–vista–controlador (MVC). Fue desarrollado en
+            origen para gestionar varias páginas orientadas a noticias de la World Company de Lawrence, Kansas, y fue
+            liberada al público bajo una licencia BSD en julio de 2005; el framework fue nombrado en alusión al
+            guitarrista de jazz gitano Django Reinhardt.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="SYMFONY">
+        <div class="timeline__content"><img class="timeline__img"
+            src="data:image/png;base64,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" />
+          <h2 class="timeline__content-title">2005</h2>
+          <p class="timeline__content-desc">Symfony es un framework diseñado para desarrollar aplicaciones web basado en
+            el patrón Modelo Vista Controlador. Para empezar, separa la lógica de negocio, la lógica de servidor y la
+            presentación de la aplicación web. Proporciona varias herramientas y clases encaminadas a reducir el tiempo
+            de desarrollo de una aplicación web compleja. Además, automatiza las tareas más comunes, permitiendo al
+            desarrollador dedicarse por completo a los aspectos específicos de cada aplicación.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-text="JPA">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.campusmvp.es/recursos/image.axd?picture=/2021/1T/JPA-portada.png" />
+          <h2 class="timeline__content-title">2006</h2>
+          <p class="timeline__content-desc">Java Persistence API, más conocida por sus siglas JPA, es la API de
+            persistencia desarrollada para la plataforma Java EE.
+
+            Es un framework del lenguaje de programación Java que maneja datos relacionales en aplicaciones usando la
+            Plataforma Java en sus ediciones Standard (Java SE) y Enterprise (Java EE).</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="JQUERY">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://estradawebgroup.com/ImagesUpload/jQuery20130723.png" />
+          <h2 class="timeline__content-title">2006</h2>
+          <p class="timeline__content-desc">jQuery es una biblioteca multiplataforma de JavaScript, creada inicialmente
+            por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol
+            DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.1​ Fue
+            presentada el 14 de enero de 2006 en el BarCamp NYC. De acuerdo a un análisis de la Web (realizado en 2017)
+            JQuery es la biblioteca de JavaScript más utilizada, por un amplio margen.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="LIQUIBASE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.liquibase.org/wp-content/uploads/sites/6/2021/03/ORG-community-main.png" />
+          <h2 class="timeline__content-title " style="color: black;">2006</h2>
+          <p class="timeline__content-desc">Liquibase es una biblioteca de código abierto independiente de la base de
+            datos para rastrear, administrar y aplicar cambios en el esquema de la base de datos. Se inició en 2006 para
+            permitir un seguimiento más fácil de los cambios en la base de datos, especialmente en un entorno de
+            desarrollo de software ágil.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="SONARQUBE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.sonarqube.org/index/sq-homepage-og-image.png" />
+          <h2 class="timeline__content-title" style="color: black;">2006</h2>
+          <p class="timeline__content-desc">SonarQube es una plataforma para evaluar código fuente. Es software libre y
+            usa diversas herramientas de análisis estático de código fuente como Checkstyle, PMD o FindBugs para obtener
+            métricas que pueden ayudar a mejorar la calidad del código de un programa.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="GIT">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://api.binary-coffee.dev/uploads/d196c5dabf39496c8c892f944d2102cf.jpg" />
+          <h2 class="timeline__content-title">2007</h2>
+          <p class="timeline__content-desc">Git es un software de control de versiones diseñado por Linus Torvalds,
+            pensando en la eficiencia, la confiabilidad y compatibilidad del mantenimiento de versiones de aplicaciones
+            cuando estas tienen un gran número de archivos de código fuente.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="GRADLE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://marvel-b1-cdn.bc0a.com/f00000000156946/www.jrebel.com/sites/rebel/files/image/2020-11/image-blog-what-is-gradle.jpg" />
+          <h2 class="timeline__content-title">2007</h2>
+          <p class="timeline__content-desc">Gradle es un sistema de automatización de construcción de código de software
+            que construye sobre los conceptos de Apache Ant y Apache Maven e introduce un lenguaje específico del
+            dominio (DSL) basado en Groovy en vez de la forma XML utilizada por Apache Maven para declarar la
+            configuración de proyecto.2​Gradle utiliza un grafo acíclico dirigido ("DAG") para determinar el orden en el
+            que las tareas pueden ser ejecutadas.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="CHROME">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://i0.wp.com/unaaldia.hispasec.com/wp-content/uploads/2021/09/google-chrome-94-disponivel-para-download-com-as-novidades-mais-pedidas-og.jpg?resize=1024%2C538&ssl=1" />
+          <h2 class="timeline__content-title">2008</h2>
+          <p class="timeline__content-desc">Google Chrome es un navegador web de código cerrado desarrollado por Google,
+            aunque derivado de proyectos de código abierto (como el motor de renderizado Blink).​ Está disponible
+            gratuitamente. El nombre del navegador deriva del término en inglés usado para el marco de la interfaz
+            gráfica de usuario («chrome»).</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="V8 (MOTOR JavaScript)">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.digital55.com/wp-content/uploads/2019/12/google-actualiza-su-famoso-motor-v8-a-su-octava-version.png" />
+          <h2 class="timeline__content-title">2008</h2>
+          <p class="timeline__content-desc">V8 es un motor de código abierto para JavaScript y WebAssembly, creado por
+            Google.La primera versión del motor V8 fue lanzada el 2 de septiembre de 2008 al mismo tiempo que la primera
+            versión del navegador Google Chrome.
+            Cabe destacar también que este motor no solo ha sido usado del lado del cliente, sino también del lado del
+            servidor en Couchbase, MongoDB y Node.js.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="GSON">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://proyectodesarrollador.com/wp-content/uploads/2018/06/gson-1024x512.png" />
+          <h2 class="timeline__content-title">2008</h2>
+          <p class="timeline__content-desc">Gson (también conocido como Google Gson) es una biblioteca de código abierto
+            para el lenguaje de programación Java que permite la serialización y deserialización entre objetos Java y su
+            representación en notación JSON.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="GITHUB">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://alfred.dailyweb.pl/wp-content/uploads/2019/01/github.jpg" />
+          <h2 class="timeline__content-title">2008</h2>
+          <p class="timeline__content-desc">GitHub es una forja para alojar proyectos utilizando el sistema de control
+            de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de ordenador. El
+            software que opera GitHub fue escrito en Ruby on Rails. Desde enero de 2010, GitHub opera bajo el nombre de
+            GitHub, Inc.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-text="SPRING ROO">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://keyholesoftware.com/wp-content/uploads/Spring-roo.jpg.webp" />
+          <h2 class="timeline__content-title">2009</h2>
+          <p class="timeline__content-desc">Spring Roo es una herramienta de software de código abierto que utiliza
+            principios de convención sobre configuración para proporcionar un rápido desarrollo de aplicaciones de
+            software empresarial basado en Java.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="UNDERSCORE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://s3.amazonaws.com/oodles-technologies1/blog-images/3ad3d729-d464-4d3c-b05e-aca6e9e6a917.png" />
+          <h2 class="timeline__content-title">2009</h2>
+          <p class="timeline__content-desc">
+            Underscore.js es una biblioteca de JavaScript que proporciona funciones de utilidad para tareas de
+            programación comunes. Es comparable a las características proporcionadas por Prototype.js y el lenguaje
+            Ruby, pero opta por un diseño de programación funcional en lugar de extender prototipos de objetos. La
+            documentación se refiere a Underscore.js como "el lazo que acompaña al esmoquin de jQuery y los tirantes de
+            Backbone.js". Underscore.js fue creado por Jeremy Ashkenas, quien también es conocido por Backbone.js y
+            CoffeeScript
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="NODE JS">
+        <div class="timeline__content"><img class="timeline__img"
+            src="data:image/png;base64,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" />
+          <h2 class="timeline__content-title">2009</h2>
+          <p class="timeline__content-desc">Node.js es un entorno en tiempo de ejecución multiplataforma, de código
+            abierto, para la capa del servidor (pero no limitándose a ello) basado en el lenguaje de programación
+            JavaScript, asíncrono, con E/S de datos en una arquitectura orientada a eventos y basado en el motor V8 de
+            Google. Fue creado con el enfoque de ser útil en la creación de programas de red altamente escalables, como
+            por ejemplo, servidores web.​ Fue creado por Ryan Dahl en 2009 y su evolución está apadrinada por la empresa
+            Joyent, que además tiene contratado a Dahl en plantilla.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="BACKBONE.JS">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.etatvasoft.com/insights/wp-content/uploads/2017/02/b-thumb-img8.jpg" />
+          <h2 class="timeline__content-title">2010</h2>
+          <p class="timeline__content-desc">
+            Backbone es una herramienta de desarrollo/API para el lenguaje de programación Javascript con un interfaz
+            RESTful por JSON , basada en el paradigma de diseño de aplicaciones Modelo Vista Controlador. Está diseñada
+            para desarrollar aplicaciones de una única página y para mantener las diferentes partes de las aplicaciones
+            web (p.e. múltiples clientes y un servidor) sincronizadas.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="ANGULAR JS">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.nextraining.es/wp-content/uploads/2020/05/Angular-JS.png" />
+          <h2 class="timeline__content-title">2010</h2>
+          <p class="timeline__content-desc">
+            AngularJS (comúnmente llamado Angular.js o AngularJS 1), es un framework de JavaScript de código abierto,
+            mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página. Su objetivo
+            es aumentar las aplicaciones basadas en navegador con capacidad de Modelo Vista Controlador (MVC), en un
+            esfuerzo para hacer que el desarrollo y las pruebas sean más fáciles.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="EXPRESS">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://blog.logrocket.com/wp-content/uploads/2020/12/express-middlewares-complete-guide.png" />
+          <h2 class="timeline__content-title" style="color: black;">2010</h2>
+          <p class="timeline__content-desc">Express.js, o simplemente Express, es un marco de aplicación web de back-end
+            para Node.js, lanzado como software gratuito y de código abierto bajo la licencia MIT. Está diseñado para
+            crear aplicaciones web y API. Se le ha llamado el marco de servidor estándar de facto para Node.js.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="LARAVEL">
+        <div class="timeline__content"><img class="timeline__img"
+            src="data:image/png;base64,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" />
+          <h2 class="timeline__content-title">2011</h2>
+          <p class="timeline__content-desc">Laravel es un framework de código abierto para desarrollar aplicaciones y
+            servicios web con PHP 5, PHP 7 y PHP 8. Su filosofía es desarrollar código PHP de forma elegante y simple,
+            evitando el "código espagueti". Fue creado en 2011 y tiene una gran influencia de frameworks como Ruby on
+            Rails, Sinatra y ASP.NET MVC.​</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="RXJS">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.adictosaltrabajo.com/wp-content/uploads/2019/12/RXJS.png" />
+          <h2 class="timeline__content-title" style="color: black;">2011</h2>
+          <p class="timeline__content-desc">
+            La programación Reactiva es un paradigma de programación asincrónico interesado en los flujos de datos y la
+            propagación al cambio . RxJS (Por sus siglas en Inglés, "Reactive Extensions for JavaScript") es una
+            librería para programación reactiva usando obvservables que hacen más fácil la creación de código asincrono
+            o basado en callbacks.
+
+            RxJS proporciona una implementación del tipo Observable, el cual es necesitado hasta que el tipo de dato sea
+            parte del lenguaje y hasta que los navegadores ofrezcan un soporte. La librería también proporciona
+            funciones de utilería para la creación y trabajo con observables.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="TYPESCRIPT">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://hidden1.zentica-global.com/wp-content/uploads/2021/03/Inleiding-tot-TypeScript-en-hoe-werkt-het.jpg" />
+          <h2 class="timeline__content-title">2012</h2>
+          <p class="timeline__content-desc">
+            TypeScript es un lenguaje de programación libre y de código abierto desarrollado y mantenido por Microsoft.
+            Es un superconjunto de JavaScript, que esencialmente añade tipos estáticos y objetos basados en clases.
+            Anders Hejlsberg, diseñador de C# y creador de Delphi y Turbo Pascal, ha trabajado en el desarrollo de
+            TypeScript. TypeScript es usado para desarrollar aplicaciones JavaScript que se ejecutarán en el lado del
+            cliente o del servidor, o extensiones para programas (Node.js y Deno).
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="HIKARI">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://unpocodejava.files.wordpress.com/2015/03/image0013.png" />
+          <h2 class="timeline__content-title">2012</h2>
+          <p class="timeline__content-desc">
+            Hikari CP es un Framework que permite crear pools de conexiones desarrollado en 2012,</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-text="TRAVIS">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://accentsconagua.com/img/images_17/travis-ci-what-why-how_14.png" />
+          <h2 class="timeline__content-title" style="color: black;">2012</h2>
+          <p class="timeline__content-desc">Travis CI es un servicio de integración continua alojado que se utiliza para
+            crear y probar proyectos de software alojados en GitHub y Bitbucket. Travis CI fue el primer servicio de CI
+            que brindó servicios a proyectos de código abierto de forma gratuita y continúa haciéndolo.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="JHipster">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://blog.db1group.com/wp-content/uploads/2017/10/JHipster-Um-grande-aliado-no-desenvolvimento-de-aplicacoes-Java-e-Angular.jpg" />
+          <h2 class="timeline__content-title">2013</h2>
+          <p class="timeline__content-desc">JHipster es un generador de aplicaciones gratuito y de código abierto que se
+            utiliza para desarrollar rápidamente aplicaciones web modernas y microservicios utilizando Angular o React y
+            Spring Framework.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="REACT">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://miro.medium.com/max/1400/1*m07gVwdiMvtXxIz4CUf4pw.png" />
+          <h2 class="timeline__content-title">2013</h2>
+          <p class="timeline__content-desc">React (también llamada React.js o ReactJS) es una biblioteca Javascript de
+            código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de
+            aplicaciones en una sola página. Es mantenido por Facebook y la comunidad de software libre. En el proyecto
+            hay más de mil desarrolladores libres.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="FLUX">
+        <div class="timeline__content"><img class="timeline__img" src="http://blog.lunarlogic.io/images/flux.png" />
+          <h2 class="timeline__content-title">2013</h2>
+          <p class="timeline__content-desc">
+            Flux es una arquitectura que Facebook usa internamente cuando trabaja con React. No es un marco ni una
+            biblioteca. Es simplemente un nuevo tipo de arquitectura que complementa React y el concepto de flujo de
+            datos unidireccional. Dicho esto, Facebook proporciona un repositorio que incluye una biblioteca Dispatcher.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="DOCKER">
+        <div class="timeline__content"><img class="timeline__img"
+            src="data:image/png;base64,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" />
+          <h2 class="timeline__content-title">2013</h2>
+          <p class="timeline__content-desc">
+            Docker es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores
+            de software, proporcionando una capa adicional de abstracción y automatización de virtualización de
+            aplicaciones en múltiples sistemas operativos.​
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="NPM">
+        <div class="timeline__content"><img class="timeline__img"
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARwAAACxCAMAAAAh3/JWAAAAh1BMVEXMODj////KOTf25+nHHyHNNjnMNTXHKSr48O78///MRUXv2djKISHLMC/LLCz49PPam5jZfHvIJCfKTkzowcHfl5blrq735uPNMTLOZGHGMTLHIib47OvSdHD57O/Wj43SfnnHQEXis7Xs5OLFDhzJW1zx5N3HNzvqysvbpKLXkJTDDBHu084V/0LMAAACVklEQVR4nO3c7XKaQBhAYUDYDSqQ0jRua0xa+5m093997WTK7laW193OBG09zy9m8QU8Q36QaLIMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA81BFrKpyU1UWO5V5Y1UVfbKpg83aZltG27orU/FTpXZjJmEsrJm1zWoRbfXOtlnexY/d9MNYs7uPHwu6f5izTtnVeazOixM9lOer0sZ5nzAWdt3OGecqJY76qzhrG+dVeo0D/3Oc+JNNII6AOALiCIgjII7g9HHq3C3WbjMljjeWEie83zvY6eNMXOOxOHVwMyVOHd72Nk8fp65fWx/i75x6sRymlruEODdu7Nqt7t3q/qzi5EYNSrd8NM5mPUy1b1PilMOYfuNWb+3B1rfnFWeokFV9wp2zsU9RJilOPzy3N34c+7zaE+f5BcQhDnGIQxziBBBHQBwBcQTEERBHQBwBcQTEERBHQBwBcQQvFKchzuHUx09Gt78Yoz8TZzTnthL+bnUZccKIQxziEMcijoA4AuIIiCMIfkj7jzhu+aU+h3y2cfSXq5Cvw/5Cu8VNVfxenXi2qoPH+mbfpdl1gf3dvrVxnuwLukeboX10q09zxsl0q0d6Y++crDB2uVVH4iy+j4+ltSnswVRovzZDdJU1blXZa1DemP2GwUyqMX934Vbtu5z4sdpsg8fyvlIUOpk7XeHtV/41ZIevPGdHf2VxyYgjII6AOALiCIgjII6AOAK1vAv50R8fvQBqux4ruXGeVaH/SOAeLwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPAP+wmF6GyQaeD+iAAAAABJRU5ErkJggg==" />
+          <h2 class="timeline__content-title">2014</h2>
+          <p class="timeline__content-desc">npm es el sistema de gestión de paquetes por defecto para Node.js, un
+            entorno de ejecución para JavaScript, bajo Artistic License 2.0.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="VUE.JS">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.ma-no.org/cache/galleries/contents-1790/460-300/vuejs.jpg" />
+          <h2 class="timeline__content-title">2014</h2>
+          <p class="timeline__content-desc">
+            Vue.js (comúnmente conocido como Vue; se pronuncia /vjuː/, como "view") es un framework de JavaScript de
+            código abierto para la construcción de interfaces de usuario y aplicaciones de una sola página. Fue creado
+            por Evan You, y es mantenido por él y por el resto de los miembros activos del equipo central que provienen
+            de diversas empresas como Netlify y Netguru
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-text="VIRTUAL STUDIO CODE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://www.ochobitshacenunbyte.com/wp-content/uploads/2020/05/portada-vsc-microsoft.jpg" />
+          <h2 class="timeline__content-title">2015</h2>
+          <p class="timeline__content-desc">Visual Studio Code es un editor de código fuente desarrollado por Microsoft
+            para Windows, Linux y macOS. Incluye soporte para la depuración, control integrado de Git, resaltado de
+            sintaxis, finalización inteligente de código, fragmentos y refactorización de código</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-text="EDGE">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://estaticos-cdn.sport.es/clip/f2d621a6-cb39-4f68-9fdd-c12287afeff8_alta-libre-aspect-ratio_default_0.jpg" />
+          <h2 class="timeline__content-title">2015</h2>
+          <p class="timeline__content-desc">
+            Microsoft Edge es un navegador web desarrollado por Microsoft, basado en Chromium. Fue lanzado por primera
+            vez para Windows 10 y Xbox One en julio de 2015, luego para Android y iOS en octubre de 2017,​ para macOS en
+            mayo de 2019, en Windows 7, 8 y 8.1 en enero de 2020 y para Linux en octubre de 2020.
+            Originalmente construido con los propios motores EdgeHTML y Chakra de Microsoft, en 2019 Edge fue
+            reconstruido como un navegador basado en Chromium,​ utilizando los motores Blink y V8.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="timeline-item" data-text="REDUX">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://i1.wp.com/blog.enriqueoriol.com/wp-content/uploads/2018/08/reduxLogo.png?fit=1024%2C684" />
+          <h2 class="timeline__content-title">2015</h2>
+          <p class="timeline__content-desc">
+            Redux es una librería JavaScript de código abierto para el manejo del estado de las aplicaciones. Es
+            comúnmente usada con otras librerías como React o Angular para la construcción de Interfaces de Usuario. Dan
+            Abramov y Andrew Clark se inspiraron en otra librería de Facebook, Flux ​ para crear Redux.
+          </p>
+        </div>
+      </div>
+
+
+
+      <div class="timeline-item" data-text="ANGULAR">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://victorroblesweb.es/wp-content/uploads/2017/04/angular4.png" />
+          <h2 class="timeline__content-title">2016</h2>
+          <p class="timeline__content-desc">Angular (comúnmente llamado Angular 2+ o Angular 2) es un framework para
+            aplicaciones web desarrollado en TypeScript, de código abierto, mantenido por Google, que se utiliza para
+            crear y mantener aplicaciones web de una sola página. Su objetivo es aumentar las aplicaciones basadas en
+            navegador con capacidad de Modelo Vista Controlador (MVC), en un esfuerzo para hacer que el desarrollo y las
+            pruebas sean más fáciles.</p>
+        </div>
+      </div>
+      <div class="timeline-item" data-text="GITHUB Actions">
+        <div class="timeline__content"><img class="timeline__img"
+            src="https://assets.st-note.com/production/uploads/images/53908223/rectangle_large_type_2_516e5f0de188c05e52ca8c56ec18c38b.jpg?width=800" />
+          <h2 class="timeline__content-title">2019</h2>
+          <p class="timeline__content-desc">GitHub Actions es una herramienta que permite reducir la cadena de acciones
+            necesaria para la ejecución de código, mediante la creación de un de flujo de trabajo encargado del
+            Pipeline.Por lo tanto, GitHub Actions permite crear workflows que se puedan utilizar para compilar, testear
+            y desplegar código.</p>
+        </div>
+      </div>
+
+
+      <div class="demo-footer"><a href="https://github.com/Tonigil99" target="_blank">Copyright Toni Gil Martinez</a>
+      </div>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+      <script>
+        (function ($) {
+          $.fn.timeline = function () {
+            var selectors = {
+              id: $(this),
+              item: $(this).find(".timeline-item"),
+              activeClass: "timeline-item--active",
+              img: ".timeline__img"
+            };
+            selectors.item.eq(0).addClass(selectors.activeClass);
+            selectors.id.css(
+              "background-image",
+              "url(" +
+              selectors.item
+                .first()
+                .find(selectors.img)
+                .attr("src") +
+              ")"
+            );
+            var itemLength = selectors.item.length;
+            $(window).scroll(function () {
+              var max, min;
+              var pos = $(this).scrollTop();
+              selectors.item.each(function (i) {
+                min = $(this).offset().top;
+                max = $(this).height() + $(this).offset().top;
+                var that = $(this);
+                if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+                  selectors.item.removeClass(selectors.activeClass);
+                  selectors.id.css(
+                    "background-image",
+                    "url(" +
+                    selectors.item
+                      .last()
+                      .find(selectors.img)
+                      .attr("src") +
+                    ")"
+                  );
+                  selectors.item.last().addClass(selectors.activeClass);
+                } else if (pos <= max - 40 && pos >= min) {
+                  selectors.id.css(
+                    "background-image",
+                    "url(" +
+                    $(this)
+                      .find(selectors.img)
+                      .attr("src") +
+                    ")"
+                  );
+                  selectors.item.removeClass(selectors.activeClass);
+                  $(this).addClass(selectors.activeClass);
+                }
+              });
+            });
+          };
+        })(jQuery);
+
+        $("#timeline-1").timeline();
+      </script>
+
+</body>
+
+</html>
