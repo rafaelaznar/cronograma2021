@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Linea del tiempo</title>
+  <link rel="stylesheet" href="./style.css">
+
+<style>
+
+.r-title{
+  margin-top: var(--rTitleMarginTop, 0) !important;
+  margin-bottom: var(--rTitleMarginBottom, 0) !important;
+}
+
+
+p:not([class]){
+  line-height: var(--cssTypographyLineHeight, 1.78);
+  margin-top: var(--cssTypographyBasicMargin, 1em);
+  margin-bottom: 0;
+}
+
+p:not([class]):first-child{
+  margin-top: 0;
+}
+
+/*
+text component
+*/
+
+.text{
+  display: var(--textDisplay, inline-flex);
+  font-size: var(--textFontSize, 1rem);  
+}
+
+/*
+time component
+*/
+
+/*
+core styles
+*/
+
+.time{
+  display: var(--timeDisplay, inline-flex);
+}
+
+/*
+extensions
+*/
+
+.time__month{
+  margin-left: var(--timelineMounthMarginLeft, .25em);
+}
+
+/*
+skin
+*/
+
+.time{
+  padding: var(--timePadding, .25rem 1.25rem .25rem);
+  background-color: var(--timeBackgroundColor, #f0f0f0);
+
+  font-size: var(--timeFontSize, .75rem);
+  font-weight: var(--timeFontWeight, 700);
+  text-transform: var(--timeTextTransform, uppercase);
+  color: var(--timeColor, currentColor);
+}
+
+/*
+card component
+*/
+
+/*
+core styles
+*/
+
+.card{
+  padding: var(--timelineCardPadding, 1.5rem 1.5rem 1.25rem);
+}
+
+.card__content{
+  margin-top: var(--cardContentMarginTop, .5rem);
+}
+
+/*
+skin
+*/
+
+.card{
+  border-radius: var(--timelineCardBorderRadius, 2px);
+  border-left: var(--timelineCardBorderLeftWidth, 3px) solid var(--timelineCardBorderLeftColor, var(--uiTimelineMainColor));
+  box-shadow: var(--timelineCardBoxShadow, 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24));
+  background-color: var(--timelineCardBackgroundColor, #fff);
+}
+
+/*
+extensions
+*/
+
+.card__title{
+  --rTitleMarginTop: var(--cardTitleMarginTop, 1rem);
+  font-size: var(--cardTitleFontSize, 1.25rem);
+}
+
+/*
+=====
+CORE STYLES
+=====
+*/
+
+.timeline{
+  display: var(--timelineDisplay, grid);
+  grid-row-gap: var(--timelineGroupsGap, 2rem);
+}
+
+/*
+1. If timeline__year isn't displaed the gap between it and timeline__cards isn't displayed too
+*/
+
+.timeline__year{
+  margin-bottom: 1.25rem; /* 1 */
+}
+
+.timeline__cards{
+  display: var(--timeloneCardsDisplay, grid);
+  grid-row-gap: var(--timeloneCardsGap, 1.5rem);
+}
+
+
+/*
+=====
+SKIN
+=====
+*/
+
+.timeline{
+  --uiTimelineMainColor: var(--timelineMainColor, #222);
+  --uiTimelineSecondaryColor: var(--timelineSecondaryColor, #fff);
+
+  border-left: var(--timelineLineWidth, 3px) solid var(--timelineLineBackgroundColor, var(--uiTimelineMainColor));
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.timeline__year{
+  --timePadding: var(--timelineYearPadding, .5rem 1.5rem);
+  --timeColor: var(--uiTimelineSecondaryColor);
+  --timeBackgroundColor: var(--uiTimelineMainColor);
+  --timeFontWeight: var(--timelineYearFontWeight, 400);
+}
+
+.timeline__card{
+  position: relative;
+  margin-left: var(--timelineCardLineGap, 1rem);
+}
+
+/*
+1. Stoping cut box shadow
+*/
+
+.timeline__cards{
+  overflow: hidden;
+  padding-top: .25rem; /* 1 */
+  padding-bottom: .25rem; /* 1 */
+}
+
+.timeline__card::before{
+  content: "";
+  width: 100%;
+  height: var(--timelineCardLineWidth, 2px);
+  background-color: var(--timelineCardLineBackgroundColor, var(--uiTimelineMainColor));
+
+  position: absolute;
+  top: var(--timelineCardLineTop, 1rem);
+  left: -50%;
+  z-index: -1;
+}
+
+/*
+=====
+SETTINGS
+=====
+*/
+/**/
+.timeline{
+  --timelineMainColor: #0B90A0;
+}
+
+/*
+=====
+DEMO
+=====
+*/
+
+body{
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+  text-align: justify;
+  color: #222;
+
+  background-color: #f0f0f0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+p{
+  margin-top: 0;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+p:last-child{
+  margin-bottom: 0;
+}
+
+.page{
+  max-width: 47rem;
+  padding: 5rem 2rem 3rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.substack{
+  border:1px solid #0B90A0; 
+  background-color: #0B90A0;
+  width: 100%;
+  max-width: 480px;
+  height: 280px;
+  margin: 1rem auto;;
+}
+
+
+</style>
+
+
+
+</head>
+<body>
+<!-- partial:index.partial.html-->
+<div class="page">
+  <h1 style="color: #0B90A0; ">Linea del tiempo ( 1991- Actualidad )</h1>
+  <div class="timeline">
+    <div class="timeline__group">
+      <span class="timeline__year time" aria-hidden="true">1991</span>
+      <div class="timeline__cards">
+        <div class="timeline__card card">
+          <header class="card__header">
+            <time class="time">
+              <span class="time__day">Python</span>
+              
+            </time>
+          </header>
+          <div class="card__content">
+            <p>Es un lenguaje de programación interpretado cuya filosofía hace hincapié en la legibilidad de su código.</p>
+            <p><a href="https://es.wikipedia.org/wiki/Python">Leer más</a></p>
+          </div>
+        </div>
+      
+    <div class="timeline__group">
+      <span class="timeline__year time" aria-hidden="true">1994</span>
+      <div class="timeline__cards">
+        <div class="timeline__card card">
+          <header class="card__header">
+            <time class="time">
+              <span class="time__day">MySQL</span>
+            </time>
+          </header>
+          <div class="card__content">
+            <p> Es un sistema de gestión de bases de datos relacional desarrollado bajo licencia dual y está considerada como la base de datos de código abierto más popular del mundo.</p>
+            <p><a href="https://es.wikipedia.org/wiki/MySQL">Leer más</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline__group">
+      <span class="timeline__year time" aria-hidden="true">1995</span>
+      <div class="timeline__cards">
+        <div class="timeline__card card">
+          <header class="card__header">
+            <time class="time">
+              <span class="time__day">Apache</span>
+            </time>          
+          </header>
+          <div class="card__content">
+            <p>Es un servidor web HTTP de código abierto, para plataformas Unix (BSD, GNU/Linux, etc.), Microsoft Windows, Macintosh y otras, que implementa el protocolo HTTP.</p>
+            <p><a href="https://es.wikipedia.org/wiki/Servidor_HTTP_Apache">Leer más</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Java</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p>Es un lenguaje de programación y una plataforma informática. Su sintaxis deriva en gran medida de C y C++. Las aplicaciones de Java son compiladas a bytecode que puede ejecutarse en cualquier máquina virtual Java (JVM) sin importar la arquitectura de la computadora subyacente.</p>
+      <p><a href="https://es.wikipedia.org/wiki/Java_(lenguaje_de_programaci%C3%B3n)">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Guerra de los navegadores / Browser Wars</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p>Es el nombre popular dado a la competencia entre los navegadores web por el dominio del mercado. Específicamente el término se refiere a la lucha que hubo entre Microsoft, con su navegador Internet Explorer, y Netscape, con Netscape Navigator, por la dominación del mercado de navegadores web (particularmente en la plataforma Windows) .</p>
+       <p><a href="https://es.wikipedia.org/wiki/Guerra_de_navegadores">Leer más</a></p>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Internet Explorer</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p>Es una serie de navegadores web gráficos desarrollado por Microsoft para el sistema operativo Microsoft Windows .</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Netscape</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p>Fue el primer navegador comercial y en su día el dominante en términos de cuota de uso, pero como resultado de la primera guerra de navegadores, perdió prácticamente toda su cuota en favor de Internet Explorer. </p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Opera</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p>Es un navegador web creado por la empresa noruega Opera Software. Tiene versiones para computadoras de escritorio, teléfonos móviles y tabletas.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">PHP</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p>Es un lenguaje de programación de uso general que se adapta especialmente al desarrollo web. PHP originalmente significaba Personal Home Page (Página personal), pero ahora significa Hypertext Preprocessor</p>
+      <p><a href="https://es.wikipedia.org/wiki/PHP">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">1997</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">ECMAscript</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es una especificación de lenguaje de programación basado en el popular lenguaje JavaScript. Define un lenguaje de tipos dinámicos ligeramente inspirado en Java y otros lenguajes del estilo de C</p>
+        <p><a href="https://es.wikipedia.org/wiki/ECMAScript">Leer más</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">1998</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">PhpMyAdmin</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es una herramienta escrita en PHP con la intención de manejar la administración de MySQL a través de páginas web, utilizando un navegador web. Actualmente puede crear y eliminar bases de datos, crear, eliminar y alterar tablas, borrar, editar y añadir campos, ejecutar cualquier sentencia SQL</p>
+        <p><a href="https://es.wikipedia.org/wiki/PhpMyAdmin">Leer más</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">1998</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Tomcat</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Funciona como un contenedor de servlets desarrollado bajo el proyecto Jakarta en la Apache Software Foundation. Tomcat implementa las especificaciones de los servlets y de JavaServer Pages (JSP) </p>
+         <p><a href="https://es.wikipedia.org/wiki/Tomcat">Leer más</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2000</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Apache Ant</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un software para procesos de automatización de compilación desarrollado en lenguaje Java y requiere la plataforma Java, así que es más apropiado para la construcción de proyectos Java. </p>
+        <p><a href="https://es.wikipedia.org/wiki/Apache_Ant">Leer más</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Struts</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una herramienta de soporte para el desarrollo de aplicaciones Web bajo la plataforma Java EE. Permite reducir el tiempo de desarrollo. Su carácter de "software libre" y su compatibilidad con todas las plataformas en las que Java Entreprise esté disponible lo convierten en una herramienta altamente disponible.</p>
+      <p><a href="https://es.wikipedia.org/wiki/Apache_Struts">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2001</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Eclipse</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es una plataforma de software compuesto por un conjunto de herramientas de programación de código abierto multiplataforma para desarrollar lo que el proyecto llama "Aplicaciones de Cliente Enriquecido" </p>
+         <p><a href="https://es.wikipedia.org/wiki/Eclipse_(software)">Leer más</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">IntelliJ</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un entorno de desarrollo integrado (IDE) para el desarrollo de programas informáticos.</p>
+       <p><a href="https://es.wikipedia.org/wiki/IntelliJ_IDEA">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Hibernate</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una herramienta de mapeo objeto-relacional que facilita el mapeo de atributos entre una base de datos relacional tradicional y el modelo de objetos de una aplicación, mediante archivos declarativos (XML) o anotaciones en los beans de las entidades que permiten establecer estas relaciones.</p>
+      <p><a href="https://es.wikipedia.org/wiki/Hibernate">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2002</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Maven</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es una herramienta de software para la gestión y construcción de proyectos Java. Es similar en funcionalidad a Apache Ant.</p>
+        <p><a href="https://es.wikipedia.org/wiki/Maven">Leer más</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Spring</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un framework para el desarrollo de aplicaciones y contenedor de inversión de control, de código abierto para la plataforma Java.</p>
+      <p><a href="https://es.wikipedia.org/wiki/Spring_Framework">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Spring Boot</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una infraestructura ligera que elimina la mayor parte del trabajo de configurar las aplicaciones basadas en Spring.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2003</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Spring Security</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un framwork Java / Java EE que proporciona autenticación, autorización y otras características de seguridad para aplicaciones empresariales.</p>
+        <p><a href="https://en.wikipedia.org/wiki/Spring_Security">Leer más</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Safari</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un navegador web de código cerrado desarrollado por Apple Inc. Está disponible para macOS, iPadOS e iOS.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2004</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Firefox</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un navegador web libre y de código abierto desarrollado para distintas plataformas, está coordinado por la Corporación Mozilla y la Fundación Mozilla.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2005</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Jango</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un sitio web que ofrece el servicio de radio por internet y también funciona como red social.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Symfony</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un framework diseñado para desarrollar aplicaciones web. Proporciona varias herramientas y clases encaminadas a reducir el tiempo de desarrollo de una aplicación web compleja.</p>
+      <p><a href="https://es.wikipedia.org/wiki/Symfony">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2006</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">JPA</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un framework del lenguaje de programación Java que maneja datos relacionales en aplicaciones usando la Plataforma Java en sus ediciones Standard (Java SE) y Enterprise (Java EE).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">JQuery</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una biblioteca multiplataforma de JavaScript, creada inicialmente por John Resig, que permite simplificar la manera de interactuar con los documentos HTML, manipular el árbol DOM, manejar eventos, desarrollar animaciones y agregar interacción con la técnica AJAX a páginas web.</p>
+       <p><a href="https://es.wikipedia.org/wiki/JQuery">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time" >
+        <span class="time__day">Liquibase</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una biblioteca independiente de la base de datos de código abierto para rastrear, administrar y aplicar cambios en el esquema de la base de datos.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Sonarqube</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una plataforma para evaluar código fuente. Es software libre y usa diversas herramientas de análisis estático de código fuente para obtener métricas que pueden ayudar a mejorar la calidad del código de un programa.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2007</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">git</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un software de control de versiones diseñado por Linus Torvalds, pensando en la eficiencia, la confiabilidad y compatibilidad del mantenimiento de versiones de aplicaciones cuando estas tienen un gran número de archivos de código fuente.</p>
+        <p><a href="https://es.wikipedia.org/wiki/Git">Leer más</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time" >
+        <span class="time__day">gradle</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un sistema de automatización de construcción de código de software que construye sobre los conceptos de Apache Ant y Apache Maven e introduce un lenguaje específico del dominio (DSL) basado en Groovy para declarar la configuración de proyecto.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2008</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">chrome</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un navegador web de código cerrado​ desarrollado por Google, aunque derivado de proyectos de código abierto. Está disponible gratuitamente. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time" >
+        <span class="time__day">v8</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un motor de código abierto para JavaScript y WebAssembly, creado por Google.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">gson</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una biblioteca de código abierto para el lenguaje de programación Java que permite la serialización y deserialización entre objetos Java y su representación en notación JSON.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">github</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una  plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de ordenador.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2009</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Spring Roo</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es una herramienta de software de código abierto que utiliza principios de convención sobre configuración para proporcionar un rápido desarrollo de aplicaciones de software empresarial basado en Java. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">underscore.js</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una biblioteca de JavaScript que proporciona funciones de utilidad para tareas de programación comunes.</p>
+       <p><a href="https://en.wikipedia.org/wiki/Underscore.js">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">node.js</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor basado en el lenguaje de programación JavaScript, asíncrono, con E/S de datos en una arquitectura orientada a eventos y basado en el motor V8 de Google.</p>
+      <p><a href="https://es.wikipedia.org/wiki/Node.js">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2010</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">BackBone.js</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es una herramienta de desarrollo/API para el lenguaje de programación Javascript con un interfaz RESTful por JSON. Diseñada para desarrollar aplicaciones de una única página. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time" >
+        <span class="time__day">Angular.js</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un framework de JavaScript de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página.</p>
+      <p><a href="https://es.wikipedia.org/wiki/AngularJS">Leer más</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">express</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un marco de aplicación web back-end para Node.js, lanzado como software gratuito y de código abierto bajo la licencia MIT.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2011</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Laravel</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un framework de código abierto para desarrollar aplicaciones y servicios web con PHP 5, PHP 7 y PHP 8. Su filosofía es desarrollar código PHP de forma elegante y simple, evitando el "código espagueti". </p>
+        <p><a href="https://es.wikipedia.org/wiki/Laravel">Leer más</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">rxjs</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una biblioteca para programación reactiva usando Observables, para facilitar la composición de código asincrónico o basado en callback.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2012</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Typescript</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un lenguaje de programación libre y de código abierto desarrollado y mantenido por Microsoft. Extiende la sintaxis de JavaScript. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Hikari cp</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una librería Java que implementa un pool de conexiones JDBC muy ligero.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time" >
+        <span class="time__day">Travis ci</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es es un servicio de integración continua que se utiliza para crear y probar proyectos de software alojados en GitHub  y Bitbucket.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2013</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">jhipster</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un generador de aplicaciones gratuito y de código abierto que se utiliza para desarrollar rápidamente aplicaciones web modernas y microservicios utilizando Angular o React. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">React</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es una biblioteca Javascript de código abierto diseñada para crear interfaces de usuario con el objetivo de facilitar el desarrollo de aplicaciones en una sola página.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">Flux</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es la arquitectura que Facebook usa cuando trabaja con React. Complementa el diseño basado en componentes de React usando un flujo de datos unidireccional y permite a los usuarios crear capas de datos JavaScript.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">docker</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es  un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2014</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">npm</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es el sistema de gestión de paquetes por defecto para Node.js, un entorno de ejecución para JavaScript. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">vue.js</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es un framework de JavaScript de código abierto para la construcción de interfaces de usuario y aplicaciones de una sola página.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2015</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">Visual Studio Code</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es un editor de código fuente desarrollado por Microsoft para Windows, Linux y macOS. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">microsoft edge</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es  un navegador web desarrollado por Microsoft, basado en Chromium.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__cards">
+  <div class="timeline__card card">
+    <header class="card__header">
+      <time class="time">
+        <span class="time__day">redux</span>
+      </time>          
+    </header>
+    <div class="card__content">
+      <p> Es  una librería JavaScript de código abierto para el manejo del estado de las aplicaciones. Es comúnmente usada con otras librerías como React o Angular para la construcción de Interfaces de Usuario.</p>
+    </div>
+  </div>
+</div>
+
+<div class="timeline__group">
+  <span class="timeline__year time" aria-hidden="true">2016</span>
+  <div class="timeline__cards">
+    <div class="timeline__card card">
+      <header class="card__header">
+        <time class="time">
+          <span class="time__day">angular</span>
+        </time>          
+      </header>
+      <div class="card__content">
+        <p>Es  un framework para aplicaciones web desarrollado en TypeScript, de código abierto, mantenido por Google, que se utiliza para crear y mantener aplicaciones web de una sola página.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+</body>
+</html>
